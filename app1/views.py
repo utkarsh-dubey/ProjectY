@@ -87,7 +87,7 @@ def login_view(request):
 
     return render(request,'registration/login.html',{'form':form})
 
-
+@login_required(login_url='/accounts/login/')
 def index2(request):
 
     return render(request,'index2.html')
