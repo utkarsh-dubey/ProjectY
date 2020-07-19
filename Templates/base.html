@@ -1,78 +1,157 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-    <title>ProjectY</title>
-    <style>
+  <title>ProjectY</title>
+  <style>
+    .sidenav {
+      height: 100%;
+      /* Full-height: remove this if you want "auto" height */
+      width: 200px;
+      /* Set the width of the sidebar */
+      position: fixed;
+      /* Fixed Sidebar (stay in place on scroll) */
+      z-index: 1;
+      /* Stay on top */
+      top: 0;
+      /* Stay at the top */
+      left: 0;
+      background-color: #111;
+      /* Black */
+      overflow-x: hidden;
+      /* Disable horizontal scroll */
+      padding-top: 20px;
+    }
 
-     button[type=submit]{
+    /* The navigation menu links */
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #f1f1f1;
+      display: block;
+    }
+
+    /* When you mouse over the navigation links, change their color */
+    .sidenav a:hover {
+      color: #818181;
+    }
+
+    /* Style page content */
+    .main {
+      margin-left: 160px;
+      /* Same as the width of the sidebar */
+      padding: 0px 10px;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+
+    button[type=submit] {
       background-color: white;
       color: black;
       border: 2px solid #4CAF50;
       margin-left: 25%;
-      margin-right:5%;
+      margin-right: 5%;
       margin-top: 20px;
-     }
-      button[type=button]{
+    }
+
+    button[type=button] {
       background-color: white;
       color: black;
       border: 2px solid #4CAF50;
 
-      margin-right: 220px;
+      margin-left: 25%;
       margin-top: 20px;
-     }
-     .MyDiv{
-         text-align:center;
-     }
-     .bg-dark {
-  background-image: linear-gradient(180deg,hotpink, grey);}
-  body{
-      background-image: linear-gradient(90deg, violet,lightgreen,pink)
-  }
-  img {
-  vertical-align: middle;
-  border-style: solid;
-  margin-left: 4%;
-  border-bottom-color: black;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 15%;
-  margin-right: 4%;}
-  .navbar-brand {
-  display: inline-block;
-  padding-top: .3125rem;
-  padding-bottom: .3125rem;
-  margin-right: 1rem;
-  font-size: 2.25rem;
-  line-height: inherit;
-  white-space: nowrap;}
+    }
 
-  h1{font-weight: 500;
-  line-height: 1.2;
-  text-align: center;
-  margin-bottom: 5%;
-  margin-top: 2%;}
+    .MyDiv {
+      text-align: center;
+    }
 
+    .bg-dark {
+      background-image: linear-gradient(180deg, hotpink, grey);
+    }
+
+    body {
+      background-image: linear-gradient(90deg, violet, lightgreen, pink)
+    }
+
+    img {
+      vertical-align: middle;
+      border-style: solid;
+      margin-left: 4%;
+      border-bottom-color: black;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 15%;
+      margin-right: 4%;
+    }
+
+    .navbar-brand {
+      display: inline-block;
+      padding-top: .3125rem;
+      padding-bottom: .3125rem;
+      margin-right: 1rem;
+      font-size: 2.25rem;
+      line-height: inherit;
+      white-space: nowrap;
+    }
+
+    h1 {
+      font-weight: 500;
+      line-height: 1.2;
+      text-align: center;
+      margin-bottom: 5%;
+      margin-top: 2%;
+    }
   </style>
-  </head>
-  <body >
+</head>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">ProjectY</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-</nav>
- {%block content%}
+<body>
 
-        {%endblock%}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">ProjectY</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  <div class="sidenav">
+    <a href="sports/basketball/">Basketball</a>
+    <a href="sports/callofduty">Call of Duty</a>
+    <a href="sports/cricket">Cricket</a>
+    <a href="sports/fifa">FIFA</a>
+    <a href="sports/football">Football/Soccer</a>
+    <a href="sports/fortnite">Fortnite</a>
+    <a href="sports/ludo">Ludo King</a>
+    <a href="sports/nba">NBA</a>
+    <a href="sports/pubg">PUBG</a>
+    <a href="sports/skribbl">Skribbl.io</a>
+    <a href="sports/uno">Uno!</a>
+    <a href="sports/others">Others</a>
+  </div>
+  {%block content%}
+
+  {%endblock%}
 
 
-  </body>
+</body>
+
 </html>
