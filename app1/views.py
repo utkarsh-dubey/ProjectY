@@ -13,7 +13,7 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
             login(request,user)
-            return render(request,'accounts/index2.html')
+            return render(request,'index2.html')
     context['form']=form
     return render(request,'registration/signup.html',context)
 #@login_required
