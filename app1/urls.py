@@ -5,7 +5,8 @@ from django.contrib import admin
 from . import views
 from django.conf.urls import url, include
 from .views import( posts_detail_view,
-    posts_list_view, posts_create_view)
+    posts_list_view, posts_create_view, basketball_view, pubg_view,
+    cod_view, cricket_view)
 
 
 urlpatterns = [
@@ -16,14 +17,17 @@ urlpatterns = [
 	url(r'^posts/$', posts_list_view, name='posts_list_view'),
     url(r'^posts/(?P<url>\S+)/$', posts_detail_view, name='posts_detail_view'),
     url(r'^create/$', posts_create_view, name='posts_create_view'),
-    path('basketball', views.basketball_view, name='basketball'),
-    path('cricket', views.cricket_view, name='cricket'),
-    path('nba', views.nba_view, name='nba'),
-    path('callofduty', views.cod_view, name='cod'),
-    path('others', views.others_view, name='others'),
-    path('uno', views.uno_view, name='uno'),
+    url(r'^basketball', basketball_view, name='basketball'),
+    path('pubg', pubg_view, name='pubg'),
+    path('callofduty', cod_view, name='cod'),
+    path('cricket', cricket_view, name='cricket'),
     path('football', views.football_view, name='football'),
+    path('fifa', views.fifa_view, name='fifa'),
+    path('fortnite', views.fortnite_view, name='fortnite'),
     path('ludo', views.ludo_view, name='ludo'),
+    path('nba', views.nba_view, name='nba'),
     path('skribbl', views.skribbl_view, name='skribbl'),
-    path('pubg', views.pubg_view, name='pubg')
+    path('uno', views.uno_view, name='uno'),
+    path('others', views.others_view, name='others')
+
 ]

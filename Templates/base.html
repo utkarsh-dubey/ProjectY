@@ -143,8 +143,6 @@
     <div class="page-header">
       {% if user.is_authenticated %}
           <p class="top-menu">
-          <a href="{% url 'post_draft_list' %}" class="top-menu" title="Drafts"><i class="fab fa-firstdraft" ></i></a>
-          <a href="{% url 'post_new' %} " class="top-menu" title="Create a blog"><i class="fas fa-plus" ></i></a>
           Hello, {{ user.username }}<a href="{% url 'logout' %}" class="top-menu" ><small>(Log out)</small></a></p>
 
       {% else %}
