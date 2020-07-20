@@ -30,10 +30,13 @@ def update_user_profile(sender, instance, created, **kwargs):
 
 class Post(models.Model):
     user= models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
-    title= models.CharField(max_length=500)
+    title= models.CharField(max_length=100)
     content= models.TextField()
-    url= models.SlugField(max_length=500, unique=False, blank=True, editable=False)
+    category = models.CharField(max_length=30, default='others')
+    url= models.SlugField(max_length=100, unique=False, blank=True, editable=False)
 
     def save(self, *args, **kwargs):
-        self.url= self.title
+        randoms = str(random.randint(0, 100))
+        randoms2 = str(random.randint(200, 1000))
+        self.url= randoms2+self.title.split(' ')[0]+randoms
         super(Post, self).save(*args, **kwargs)

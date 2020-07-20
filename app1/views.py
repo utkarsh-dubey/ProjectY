@@ -88,7 +88,7 @@ def posts_detail_view(request, url=None):
 def index(request):
     return render(request,'index.html')
 
-def signup(request):
+def sign_up(request):
    if request.method == 'POST':
     form = SignUpForm(request.POST)
     if form.is_valid():

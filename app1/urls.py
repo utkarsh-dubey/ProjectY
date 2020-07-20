@@ -10,13 +10,20 @@ from .views import( posts_detail_view,
 
 urlpatterns = [
     path('',views.index,name="home"),
-    url(r'^index2/$', views.index2, name='loggedin'),
-	#url(r'^login/$',views.login_view,name="login"),
+    path('accounts/signup/',views.sign_up,name="sign-up"),
+	url(r'^index2/$', views.index2, name='loggedin'),
+	url(r'^login/$',views.login_view,name="login"),
 	url(r'^posts/$', posts_list_view, name='posts_list_view'),
     url(r'^posts/(?P<url>\S+)/$', posts_detail_view, name='posts_detail_view'),
     url(r'^create/$', posts_create_view, name='posts_create_view'),
-    path('accounts/signup/', views.signup, name= 'signup'),
-    path('drafts/', views.post_draft_list, name='post_draft_list'),
-    path('post/new/', views.post_new, name='post_new'),
-
+    path('basketball', views.basketball_view, name='basketball'),
+    path('cricket', views.cricket_view, name='cricket'),
+    path('nba', views.nba_view, name='nba'),
+    path('callofduty', views.cod_view, name='cod'),
+    path('others', views.others_view, name='others'),
+    path('uno', views.uno_view, name='uno'),
+    path('football', views.football_view, name='football'),
+    path('ludo', views.ludo_view, name='ludo'),
+    path('skribbl', views.skribbl_view, name='skribbl'),
+    path('pubg', views.pubg_view, name='pubg')
 ]
