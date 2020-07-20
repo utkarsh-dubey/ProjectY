@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<h1>Cricket</h1>
+{% for post in allposts %}
+<a href='/posts/{{ post.url }}/'>{{ post.title }} </a>
+<br><br>
+
+{% endfor %}
+
+{%endblock%}
