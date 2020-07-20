@@ -1,0 +1,25 @@
+from django import forms
+from .models import Post
+from django.core.files.images import get_image_dimensions
+from django import forms
+from app1.models import Profile
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class SignUpForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=True, help_text='Required')
+    last_name = forms.CharField(max_length=30, required=True, help_text='Required')
+    email = forms.EmailField(max_length=254, required = False, help_text='optional')
+    location = forms.CharField(max_length=20, required = False, help_text='optional')
+    birth_date = forms.DateField(required = False, help_text='optional, Format: YYYY-MM-DD')
+
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'location', 'birth_date', 'password1', 'password2', )
+    
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model= Post
+        fields= ["title", "content"]
