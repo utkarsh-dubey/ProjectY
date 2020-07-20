@@ -16,9 +16,9 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, required = False, help_text='optional')
     location = forms.CharField(max_length=20, required = False, help_text='optional')
     birth_date = forms.DateField(required = False, help_text='optional, Format: YYYY-MM-DD')
-        class Meta:
-             model = User
-             fields = ('username', 'first_name', 'last_name', 'email', 'location', 'birth_date', 'password1', 'password2', )
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'location', 'birth_date', 'password1', 'password2', )
 
 
 class UserForm(forms.ModelForm):
