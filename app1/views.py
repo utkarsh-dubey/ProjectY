@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
+from app1.forms import SignUpForm
 from .forms import PostForm
 from django.http import HttpResponseRedirect
 
@@ -56,15 +57,23 @@ def posts_detail_view(request, url=None):
 def index(request):
     return render(request,'index.html')
 def sign_up(request):
-    context = {}
-    form = UserCreationForm(request.POST or None)
-    if request.method == "POST":
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request,user)
-            return render(request,'index2.html')
-    context['form']=form
-    return render(request,'registration/signup.html',context)
+            pro = profile_form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.profile.email = form.cleaned_data.get('email')
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})
 #@login_required
 #def index2(request):
 #    return render(request, 'index2.html')
