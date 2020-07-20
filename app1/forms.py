@@ -6,18 +6,31 @@ from app1.models import Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=True, help_text='Required')
-    last_name = forms.CharField(max_length=30, required=True, help_text='Required')
-    email = forms.EmailField(max_length=254, required = False, help_text='optional')
-    location = forms.CharField(max_length=20, required = False, help_text='optional')
-    birth_date = forms.DateField(required = False, help_text='optional, Format: YYYY-MM-DD')
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 
+#class SignUpForm(UserCreationForm):
+#    first_name = forms.CharField(max_length=30, required=True, help_text='Required')
+#    last_name = forms.CharField(max_length=30, required=True, help_text='Required')
+#    email = forms.EmailField(max_length=254, required = False, help_text='optional')
+#    location = forms.CharField(max_length=20, required = False, help_text='optional')
+#    birth_date = forms.DateField(required = False, help_text='optional, Format: YYYY-MM-DD')
+#         class Meta:
+#             model = User
+#             fields = ('username', 'first_name', 'last_name', 'email', 'location', 'birth_date', 'password1', 'password2', )
+
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    helper = FormHelper()
+    helper.form_method = 'POST'
+    helper.add_input(Submit('Sign up', 'Sign up', css_class = 'btn-primary'))
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'location', 'birth_date', 'password1', 'password2', )
-    
+        fields = ('username' , 'email' , 'password',)
+
+
 
 class PostForm(forms.ModelForm):
     class Meta:

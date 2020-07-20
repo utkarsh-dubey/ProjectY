@@ -10,6 +10,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
     bio = models.TextField(max_length=500, blank=True)
     avatar = models.ImageField(null=True)
     location = models.CharField(max_length=30, blank=True, null=True)
@@ -17,6 +18,9 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30, blank=False, default='First')
     last_name = models.CharField(max_length=30, blank=False, default='Last')
     email = models.CharField(max_length=40, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.user.username}Profile'    
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):

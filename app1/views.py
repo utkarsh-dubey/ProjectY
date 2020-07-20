@@ -1,12 +1,13 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
-from app1.forms import SignUpForm
-from .forms import PostForm
+#from app1.forms import SignUpForm
+from .forms import PostForm, UserForm
 from django.http import HttpResponseRedirect
+from django.utils import timezone
 
 
 #create view
@@ -23,9 +24,30 @@ def posts_create_view(request):
 
 
     context= {'form': form,
-              }
+             }
 
     return render(request, 'posts-create-view.html', context)
+
+
+@login_required
+def post_new(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+        stuff_for_frontend = {'form' : form}
+    return render(request, 'blog/post_edit.html', stuff_for_frontend)
+
+@login_required
+def post_draft_list(request):
+    posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
+    stuff_for_frontend = {'posts' : posts}
+    return render(request, 'blog/post_draft_list.html', stuff_for_frontend)
 
 
 
@@ -56,24 +78,19 @@ def posts_detail_view(request, url=None):
 
 def index(request):
     return render(request,'index.html')
-def sign_up(request):
+
+def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            pro = profile_form.save()
-            user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.email = form.cleaned_data.get('email')
-            user.profile.first_name = form.cleaned_data.get('first_name')
-            user.profile.last_name = form.cleaned_data.get('last_name')
-            user.save()
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
-            login(request, user)
-            return redirect('home')
+            new_user = User.objects.create_user(**form.cleaned_data)
+            login(request, new_user)
+            return redirect('/')
+
     else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
+        form = UserForm()
+    return render(request, 'signup.html', {'form': form})
+
 #@login_required
 #def index2(request):
 #    return render(request, 'index2.html')
