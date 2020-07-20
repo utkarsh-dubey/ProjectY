@@ -8,7 +8,11 @@
         <h3 style="text-align:centre; font-family: sans-serif ">Play with new friends today !.</h3>
         <div class="panel-body">
           {% crispy form %}
-
+          <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Sign up">
+        </form>
         </div>
         <p>Already have an account ?<a href="{% url 'login' %}"> Log in instead.</a></p>
       </div>
