@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
-#from app1.forms import SignUpForm
+from app1.forms import SignUpForm
 from .forms import PostForm, UserForm
 from django.http import HttpResponseRedirect
 from django.utils import timezone
@@ -89,15 +89,21 @@ def index(request):
     return render(request,'index.html')
 
 def signup(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            new_user = User.objects.create_user(**form.cleaned_data)
-            login(request, new_user)
-            return redirect('/')
-
-    else:
-        form = UserForm()
+   if request.method == 'POST':
+    form = SignUpForm(request.POST)
+    if form.is_valid():
+       user = form.save()
+       user.refresh_from_db()  # load the profile instance created by the signal
+       user.profile.email = form.cleaned_data.get('email')
+       user.profile.first_name = form.cleaned_data.get('first_name')
+       user.profile.last_name = form.cleaned_data.get('last_name')
+       user.save()
+       raw_password = form.cleaned_data.get('password1')
+       user = authenticate(username=user.username, password=raw_password)
+       login(request, user)
+       return render(request, 'index2.html')
+   else:
+    form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
 #@login_required
