@@ -181,7 +181,8 @@
     {% if user.is_authenticated %}
     <p class="top-menu">
       Hello, {{ user.username }}<a href="{% url 'logout' %}" class="top-menu"><small>(Log out)</small></a></p>
-        
+    <h1><a href="{% url 'profile' %}"><button type="button" class="btn btn">Profile</button></a></h1>
+
     {% else %}
     <p class="top-menu"><small>(Login)</small><a href="{% url 'login' %} " class="top-menu" title="Login">
         <i class="fas fa-sign-in-alt fa-2x"></i></a></p>
