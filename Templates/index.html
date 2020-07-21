@@ -5,15 +5,15 @@
 {% if user.is_authenticated %}
 <h1> Welcome {{user}} </h1>
 
-<h1></h1><a href="/create"><button type="button" class="btn btn">Create</button></a></h1>
-<h1><a href="/posts"><button type="button" class="btn btn">View</button></a></h1>
-<h1><a href="{% url 'profile' %}"><button type="button" class="btn btn">Profile</button></a></h1>
+<h1><a href="/create"><button type="button" class="btn-2" style="background-color: #ffffff; color: teal;">Create</button></a></h1>
+<h1><a href="/posts"><button type="button" class="btn-2" style="background-color: yellow; color: black;">View</button></a></h1>
+<h1><a href="{% url 'profile' %}"><button type="button" class="btn-2" style="background-color: red;">Profile</button></a></h1>
 
 {% else %}
 
-<h1>Sports</h1>
-<a href="accounts/signup"><button class="btn-1">signup</button></a>
-<a href="accounts/login"><button class="btn-2">login</button></a>
+<h1>Welcome, please login or create an account to continue -</h1>
+<a href="accounts/signup"><button class="btn-1" style="margin-left: 20%;"><span>signup</span></button></a>
+<a href="accounts/login"><button class="btn-1" style="background-color: indigo; margin-left: 20%;"><span>login</span></button></a>
 
 {% endif %}
 {%endblock%}
