@@ -35,14 +35,4 @@ class UserForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model= Post
-<<<<<<< HEAD
         fields= ["title", "content", "category"]
-=======
-        fields= ["title", "content", "category","user"]
-
-class CommentForm(forms.ModelForm):
-
-    class Meta:
-        model = Comment
-        fields = ('name', 'body')
->>>>>>> parent of b5dd82a... Merge branch 'master' of https://github.com/utkarsh-dubey/ProjectY
