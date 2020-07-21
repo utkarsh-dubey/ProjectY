@@ -258,3 +258,6 @@ def login_view(request):
 def index2(request):
 
     return render(request,'index2.html')
+
+def profile(request):
+    return render(request, '/accounts/profile.html')
