@@ -5,20 +5,18 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from .forms import PostForm,CommentForm
+from .forms import PostForm
 from django.http import HttpResponseRedirect
 
 
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
-    print(request.user.username)
-    form= PostForm(request.POST or None,initial={'user':request.user.username })
+    form= PostForm(request.POST or None)
 
 
     if request.method == "POST":
         if form.is_valid():
-           
             form.save()
         return HttpResponseRedirect("/posts/")
 
@@ -206,23 +204,13 @@ def posts_detail_view(request, url=None):
 
     post= get_object_or_404(Post, url=url)
 
-    comments = post.comments.filter(active=True)
-    new_comment = None
-    if request.method == 'POST':
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
 
-            new_comment = comment_form.save(commit=False)
-            new_comment.post = post
-            new_comment.save()
-    else:
-        comment_form = CommentForm()
 
 
     context= {'post': post,
               }
 
-    return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form})
+    return render(request, 'posts-detail-view.html', context)
 
 def index(request):
     return render(request,'index.html')
@@ -271,6 +259,5 @@ def index2(request):
 
     return render(request,'index2.html')
 
-@login_required
 def profile(request):
     return render(request, 'accounts/profile.html')
