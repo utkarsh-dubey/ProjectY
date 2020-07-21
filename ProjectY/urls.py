@@ -14,4 +14,4 @@ urlpatterns = [
     path('accounts/logout/', view = LogoutView.as_view(), name='logout', kwargs={'next_page' : '/'}),
 #    auth_views.LogoutView.as_view(template_name = 'logout.html')
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)#ONLY TO BE USED IN DEBUG MODE
+] + static(settings.MEDIA_URL, docoment_root=settings.MEDIA_ROOT)#ONLY TO BE USED IN DEBUG MODE

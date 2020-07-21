@@ -3,7 +3,6 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from slugify import slugify
-from PIL import Image
 import random
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -23,6 +22,7 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username}Profile'
 
+<<<<<<< HEAD
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         super().save(force_insert, force_update, using, update_fields)
@@ -35,6 +35,8 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 
+=======
+>>>>>>> parent of b5dd82a... Merge branch 'master' of https://github.com/utkarsh-dubey/ProjectY
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
