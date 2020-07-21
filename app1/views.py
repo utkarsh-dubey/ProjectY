@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from .forms import PostForm
+from .forms import PostForm, UserUpdateForm, ProfileUpdateForm
 from django.http import HttpResponseRedirect
-
+from django.contrib import messages
 
 #create view
 @login_required(login_url='/accounts/login/')
@@ -208,7 +208,7 @@ def posts_detail_view(request, url=None):
 
 
     context= {'post': post,
-              }
+    }
 
     return render(request, 'posts-detail-view.html', context)
 
@@ -261,4 +261,20 @@ def index2(request):
 
 @login_required
 def profile(request):
-    return render(request, 'accounts/profile.html')
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance = request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated !')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(request.POST, instance = request.user)
+        p_form = ProfileUpdateForm(request.POST, instance = request.user.profile)
+
+    context= { 'u_form':u_form,
+                'p_form':p_form
+            }
+    return render(request, 'accounts/profile.html', context)
