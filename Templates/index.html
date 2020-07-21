@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content%}
+
+{% if user.is_authenticated %}
+<h1> Welcome {{user}} </h1>
+
+<h1></h1><a href="/create"><button type="button" class="btn btn">Create</button></a></h1>
+<h1><a href="/posts"><button type="button" class="btn btn">View</button></a></h1>
+<h1><a href="{% url 'profile' %}"><button type="button" class="btn btn">Profile</button></a></h1>
+
+{% else %}
+
 <h1>Sports</h1>
 <a href="accounts/signup"><button type="button" class="btn btn">signup</button></a>
 <a href="accounts/login"><button type="button" class="btn btn">login</button></a>
 
+{% endif %}
 {%endblock%}
