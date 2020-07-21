@@ -3,9 +3,8 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from slugify import slugify
-from PIL import Image
 import random
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 # Create your models here.
@@ -21,10 +20,13 @@ class Profile(models.Model):
     email = models.CharField(max_length=40, blank=True, null=True)
 
     def __str__(self):
+
         return f'{self.user.username}Profile'
 
-    def save(self):
-        super().save()
+
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
 
         img = Image.open(self.image.path)
 
@@ -40,7 +42,7 @@ def update_user_profile(sender, instance, created, **kwargs):
     instance.profile.save()
 
 class Post(models.Model):
-    user= models.CharField(max_length=30, default=User)
+    user= models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
     title= models.CharField(max_length=100)
     content= models.TextField()
     category = models.CharField(max_length=30, default='others')

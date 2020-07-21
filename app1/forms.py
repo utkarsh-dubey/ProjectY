@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post,Comment
 from django.core.files.images import get_image_dimensions
 from django import forms
 from app1.models import Profile
@@ -35,18 +35,10 @@ class UserForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model= Post
-        fields= ["title","user", "content", "category"]
+        fields= ["title", "content", "category","user"]
 
-class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+class CommentForm(forms.ModelForm):
 
     class Meta:
-        model = User
-        fields = ['username', 'email']
-
-
-
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields =  ['image']
+        model = Comment
+        fields = ('name', 'body')
