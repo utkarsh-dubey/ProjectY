@@ -9,6 +9,6 @@
         {{ form.as_p }}
         <button type="submit" name="button" class="btn btn-primary">login</button>
       </form>
-      <p>Dont have an account ? Sign Up Here!</p>
+      <p>Dont have an account ? <a href="{% url 'sign_up' %}"> Sign Up Here!</a></p>
 
 {% endblock %}

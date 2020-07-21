@@ -11,7 +11,7 @@ from .views import( posts_detail_view,
 
 urlpatterns = [
     path('',views.index,name="home"),
-    path('accounts/signup/',views.sign_up,name="sign-up"),
+    path('accounts/signup/',views.sign_up, name="sign_up"),
 	url(r'^index2/$', views.index2, name='loggedin'),
 	url(r'^login/$',views.login_view,name="login"),
 	url(r'^posts/$', posts_list_view, name='posts_list_view'),
