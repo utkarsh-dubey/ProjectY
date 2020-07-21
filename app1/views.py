@@ -228,7 +228,7 @@ def sign_up(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return render(request, 'index3.html')
+            return render(request, '')
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
@@ -244,7 +244,7 @@ def login_view(request):
         if(form.is_valid()):
             user=form.get_user()
             login(request,user)
-            return render(request,'index.html')
+            return render(request,'')
 
         else:
             form=AuthenticationForm()
@@ -254,6 +254,11 @@ def login_view(request):
 
     return render(request,'registration/login.html',{'form':form})
 
+@login_required(login_url='/accounts/login/')
+def index2(request):
 
+    return render(request,'index2.html')
+
+@login_required
 def profile(request):
     return render(request, 'accounts/profile.html')
