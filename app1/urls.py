@@ -11,6 +11,8 @@ from .views import( posts_detail_view,
 
 urlpatterns = [
     path('',views.index,name="home"),
+    path('profile/',views.profile,name="profile"),
+    
     path('accounts/signup/',views.sign_up, name="sign_up"),
 	url(r'^index2/$', views.index2, name='loggedin'),
 	url(r'^login/$',views.login_view,name="login"),

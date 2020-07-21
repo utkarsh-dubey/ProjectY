@@ -1,8 +1,7 @@
-{% extends 'base.html' %}
 
 
 <h1> Welcome {{user}} </h1>
 
-<a href="/create"><button type="button" class="btn btn">Create</button></a>
-<a href="/posts"><button type="button" class="btn btn">View</button></a>
-<a href="/accounts/logout"><button type="button" class="btn btn">Logout</button></a>
+<h1></h1><a href="/create"><button type="button" class="btn btn">Create</button></a></h1>
+<h1><a href="/posts"><button type="button" class="btn btn">View</button></a></h1>
+<h1><a href="{% url 'profile' %}"><button type="button" class="btn btn">Profile</button></a></h1>
