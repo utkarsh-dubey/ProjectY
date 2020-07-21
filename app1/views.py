@@ -5,27 +5,20 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from .forms import PostForm
+from .forms import PostForm,CommentForm
 from django.http import HttpResponseRedirect
 
 
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
-    form= PostForm(request.POST or None)
+    print(request.user.username)
+    form= PostForm(request.POST or None,initial={'user':request.user.username })
 
 
     if request.method == "POST":
         if form.is_valid():
-<<<<<<< HEAD
-=======
-            # form.initial['user']=request.user.username
-            # setattr(form,user,request.user.username)
-            # print(request.user.username)
-            # print(User.username)
-            # print(form.user)
-            # print(form.cleaned_data['user'])
->>>>>>> parent of 3a4a056... Revert "revert"
+           
             form.save()
         return HttpResponseRedirect("/posts/")
 
@@ -213,32 +206,23 @@ def posts_detail_view(request, url=None):
 
     post= get_object_or_404(Post, url=url)
 
-<<<<<<< HEAD
-
-=======
-    # post = get_object_or_404(Post, slug=slug)
     comments = post.comments.filter(active=True)
     new_comment = None
-    # Comment posted
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
 
-            # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
-            # Assign the current post to the comment
             new_comment.post = post
-            # Save the comment to the database
             new_comment.save()
     else:
         comment_form = CommentForm()
->>>>>>> parent of 3a4a056... Revert "revert"
 
 
     context= {'post': post,
               }
 
-    return render(request, 'posts-detail-view.html', context)
+    return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form})
 
 def index(request):
     return render(request,'index.html')
