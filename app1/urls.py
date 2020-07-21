@@ -14,7 +14,6 @@ urlpatterns = [
     path('profile/',views.profile,name="profile"),
     
     path('accounts/signup/',views.sign_up, name="sign_up"),
-	url(r'^index2/$', views.index2, name='loggedin'),
 	url(r'^login/$',views.login_view,name="login"),
 	url(r'^posts/$', posts_list_view, name='posts_list_view'),
     url(r'^posts/(?P<url>\S+)/$', posts_detail_view, name='posts_detail_view'),
