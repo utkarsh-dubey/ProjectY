@@ -23,6 +23,7 @@ class Profile(models.Model):
         return f'{self.user.username}Profile'    
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         super().save(force_insert, force_update, using, update_fields)
@@ -35,6 +36,8 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 
+=======
+>>>>>>> parent of b5dd82a... Merge branch 'master' of https://github.com/utkarsh-dubey/ProjectY
 =======
 >>>>>>> parent of b5dd82a... Merge branch 'master' of https://github.com/utkarsh-dubey/ProjectY
 @receiver(post_save, sender=User)
