@@ -18,7 +18,12 @@ def posts_create_view(request):
 
     if request.method == "POST":
         if form.is_valid():
-           
+            # form.initial['user']=request.user.username
+            # setattr(form,user,request.user.username)
+            # print(request.user.username)
+            # print(User.username)
+            # print(form.user)
+            # print(form.cleaned_data['user'])
             form.save()
         return HttpResponseRedirect("/posts/")
 
@@ -206,14 +211,19 @@ def posts_detail_view(request, url=None):
 
     post= get_object_or_404(Post, url=url)
 
+    # post = get_object_or_404(Post, slug=slug)
     comments = post.comments.filter(active=True)
     new_comment = None
+    # Comment posted
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
 
+            # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
             new_comment.post = post
+            # Save the comment to the database
             new_comment.save()
     else:
         comment_form = CommentForm()
