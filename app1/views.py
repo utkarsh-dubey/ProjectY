@@ -51,9 +51,13 @@ def posts_list_view(request):
 
 def basketball_view(request):
 
+    display = []
     allposts= Post.objects.all()
+    for post in allposts:
+        if post.category=="basketball":
+            display.append(post)
 
-    context= {'allposts': allposts,
+    context= {"allposts": display,
               }
 
     return render(request, 'basketball.html', context)
