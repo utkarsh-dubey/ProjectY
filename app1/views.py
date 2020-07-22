@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from .forms import PostForm,CommentForm,Goingform
+from .forms import PostForm,CommentForm,Goingform, UserUpdateForm, ProfileUpdateForm
 from django.http import HttpResponseRedirect
 
 
