@@ -49,6 +49,7 @@ def posts_list_view(request):
 
     return render(request, 'posts-list-view.html', context)
 
+@login_required(login_url='/accounts/login/')
 def basketball_view(request):
 
     display = []
@@ -62,6 +63,7 @@ def basketball_view(request):
 
     return render(request, 'basketball.html', context)
 
+@login_required(login_url='/accounts/login/')
 def pubg_view(request):
 
     display = []
@@ -75,6 +77,7 @@ def pubg_view(request):
 
     return render(request, 'pubg.html', context)
 
+@login_required(login_url='/accounts/login/')
 def cod_view(request):
 
     display = []
@@ -88,6 +91,7 @@ def cod_view(request):
 
     return render(request, 'callofduty.html', context)
 
+@login_required(login_url='/accounts/login/')
 def cricket_view(request):
 
     display = []
@@ -101,6 +105,7 @@ def cricket_view(request):
 
     return render(request, 'cricket.html', context)
 
+@login_required(login_url='/accounts/login/')
 def football_view(request):
 
     display = []
@@ -114,6 +119,7 @@ def football_view(request):
 
     return render(request, 'football.html', context)
 
+@login_required(login_url='/accounts/login/')
 def fifa_view(request):
 
     display = []
@@ -127,6 +133,7 @@ def fifa_view(request):
 
     return render(request, 'fifa.html', context)
 
+@login_required(login_url='/accounts/login/')
 def nba_view(request):
 
     display = []
@@ -140,6 +147,7 @@ def nba_view(request):
 
     return render(request, 'nba.html', context)
 
+@login_required(login_url='/accounts/login/')
 def skribbl_view(request):
 
     display = []
@@ -153,6 +161,7 @@ def skribbl_view(request):
 
     return render(request, 'skribbl.html', context)
 
+@login_required(login_url='/accounts/login/')
 def ludo_view(request):
 
     display = []
@@ -166,6 +175,7 @@ def ludo_view(request):
 
     return render(request, 'ludo.html', context)
 
+@login_required(login_url='/accounts/login/')
 def fortnite_view(request):
 
     display = []
@@ -179,6 +189,7 @@ def fortnite_view(request):
 
     return render(request, 'fortnite.html', context)
 
+@login_required(login_url='/accounts/login/')
 def uno_view(request):
 
     display = []
@@ -192,6 +203,7 @@ def uno_view(request):
 
     return render(request, 'uno.html', context)
 
+@login_required(login_url='/accounts/login/')
 def others_view(request):
 
     display = []
