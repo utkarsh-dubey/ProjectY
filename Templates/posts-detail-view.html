@@ -16,6 +16,19 @@ Go back to the <a href="/posts/">Blog posts </a><br><br>
 
 
 
+
+<div class="col-md-8 card mb-4  mt-3 ">
+  <div class="card-body">
+
+  </div>
+    <h2>{{ goings.count }} People are going.</h2>
+
+   
+  </div>
+</div>
+
+
+
     <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
 
@@ -36,16 +49,28 @@ Go back to the <a href="/posts/">Blog posts </a><br><br>
       </div>
     </div>
     <div class="col-md-8 card mb-4  mt-3 ">
+     <div class="card-body">
+      {% if new_goings %}
+      <div class="alert alert-success" role="alert">
+         Your response was updated
+      </div>
+      {% else %}
+      <h3>Let us know if you are going or not</h3>
+      <form method="post" style="margin-top: 1.3em;">
+         <form method="post" style="margin-top: 1.3em;">
+         {{ going_form | crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+      </form>
+      {% endif %}
+     </div>
+  </div>
+    <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
-        {% if new_comment %}
-        <div class="alert alert-success" role="alert">
-          Your comment has been commented
-        </div>
-        {% else %}
         <h3>Leave a comment</h3>
         <form method="post" style="margin-top: 1.3em;">
             <form method="post" style="margin-top: 1.3em;">
-           
+
 
                 <div id="div_id_name" class="form-group"> <label for="id_name" class="control-label  requiredField">
                                 Name<span class="asteriskField">*</span> </label> <div class="controls "> <input type="text" name="name" maxlength="80" class="textinput textInput form-control" required id="id_name" value={{user}} readonly> </div> </div> <div id="div_id_body" class="form-group"> <label for="id_body" class="control-label  requiredField">
@@ -54,7 +79,6 @@ Go back to the <a href="/posts/">Blog posts </a><br><br>
           {% csrf_token %}
           <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
         </form>
-        {% endif %}
       </div>
     </div>
   </div>
