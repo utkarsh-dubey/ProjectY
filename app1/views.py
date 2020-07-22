@@ -5,19 +5,20 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from django.urls import reverse
-from .forms import PostForm, UserUpdateForm, ProfileUpdateForm, PostForm,CommentForm
+from .forms import PostForm,CommentForm,Goingform
 from django.http import HttpResponseRedirect
-from django.contrib import messages
+
 
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
-    form= PostForm(request.POST or None)
+    print(request.user.username)
+    form= PostForm(request.POST or None,initial={'user':request.user.username })
 
 
     if request.method == "POST":
         if form.is_valid():
+
             form.save()
         return HttpResponseRedirect("/posts/")
 
@@ -51,13 +52,9 @@ def posts_list_view(request):
 
 def basketball_view(request):
 
-    display = []
     allposts= Post.objects.all()
-    for post in allposts:
-        if post.category=="basketball":
-            display.append(post)
 
-    context= {"allposts": display,
+    context= {'allposts': allposts,
               }
 
     return render(request, 'basketball.html', context)
@@ -208,27 +205,56 @@ def others_view(request):
 def posts_detail_view(request, url=None):
 
     post= get_object_or_404(Post, url=url)
+    goings= post.goings.filter(active=True)
+    impcheck=True
+    for i in goings:
 
+        if i.name==request.user.username:
+
+            impcheck=False
+            break
+
+    new_goings=None
     comments = post.comments.filter(active=True)
     new_comment = None
     if request.method == 'POST':
+
         comment_form = CommentForm(data=request.POST)
+        if impcheck:
+
+            going_form = Goingform(data=request.POST)
+            if going_form.is_valid():
+                if request.POST['going']!='False':
+
+                    new_goings=going_form.save(commit=False)
+                    new_goings.post=post
+                    new_goings.save()
+                else:
+                    pass
+        else:
+            
+            going_form=[]
+            new_goings=True
+
+
         if comment_form.is_valid():
 
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
-            urls = "/posts/"+url
-            return HttpResponseRedirect(urls)
     else:
         comment_form = CommentForm()
+        if not impcheck:
+            new_goings=True
+            going_form=[]
+        else:
+            going_form=Goingform()
 
 
     context= {'post': post,
               }
 
-    return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form})
-
+    return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form,'goings':goings,'new_goings':new_goings,'going_form':going_form})
 
 def index(request):
     return render(request,'index.html')
