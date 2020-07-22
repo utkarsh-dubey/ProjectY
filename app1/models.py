@@ -14,7 +14,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
     bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True, null=True)
+    location = models.CharField(max_length=30, blank=False, default='online')
     birth_date = models.DateField(null=True, blank=True)
     first_name = models.CharField(max_length=30, blank=False, default='First')
     last_name = models.CharField(max_length=30, blank=False, default='Last')
@@ -44,6 +44,7 @@ def update_user_profile(sender, instance, created, **kwargs):
 class Post(models.Model):
     user= models.CharField(max_length=100)
     title= models.CharField(max_length=100)
+    location = models.CharField(max_length=100, default='online')
     content= models.TextField()
     category = models.CharField(max_length=30, default='others')
     url= models.SlugField(max_length=100, unique=False, blank=True, editable=False)

@@ -14,7 +14,7 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Required')
     last_name = forms.CharField(max_length=30, required=True, help_text='Required')
     email = forms.EmailField(max_length=254, required = False, help_text='optional')
-    location = forms.CharField(max_length=20, required = False, help_text='optional')
+    location = forms.CharField(max_length=20, required = True, help_text='Required')
     birth_date = forms.DateField(required = False, help_text='optional, Format: YYYY-MM-DD')
     class Meta:
         model = User
@@ -35,7 +35,7 @@ class UserForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model= Post
-        fields= ["title", "user","content", "category"]
+        fields= ["title", "user","location","content", "category"]
 
 class CommentForm(forms.ModelForm):
 

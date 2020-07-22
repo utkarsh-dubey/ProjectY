@@ -1,0 +1,11 @@
+
+
+{% block content%}
+<h1>Events you may be interested in </h1>
+{% for post in allposts %}
+<a href='/posts/{{ post.url }}/'>{{ post.title }} </a>
+<br><br>
+
+{% endfor %}
+
+{%endblock%}

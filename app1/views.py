@@ -72,6 +72,19 @@ def pubg_view(request):
 
     return render(request, 'pubg.html', context)
 
+def home_view(request):
+
+    display = []
+    allposts= Post.objects.all()
+    for post in allposts:
+        if post.location=="online" or post.location == request.user.profile.location:
+            display.append(post)
+
+    context= {"allposts": display,
+              }
+
+    return render(request, 'posts2.html', context)
+
 def cod_view(request):
 
     display = []
@@ -268,6 +281,7 @@ def sign_up(request):
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.email = form.cleaned_data.get('email')
+            user.profile.location = form.cleaned_data.get('location')
             user.profile.first_name = form.cleaned_data.get('first_name')
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.save()
