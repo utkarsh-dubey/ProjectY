@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from .forms import PostForm,CommentForm,Goingform, UserUpdateForm, ProfileUpdateForm
+from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
 
 
@@ -224,7 +224,7 @@ def posts_detail_view(request, url=None):
 
             going_form = Goingform(data=request.POST)
             if going_form.is_valid():
-                if request.POST['going']!='False':
+                if request.POST.get('going',False)!='False':
 
                     new_goings=going_form.save(commit=False)
                     new_goings.post=post
@@ -232,7 +232,7 @@ def posts_detail_view(request, url=None):
                 else:
                     pass
         else:
-            
+
             going_form=[]
             new_goings=True
 
