@@ -67,11 +67,6 @@ Go back to the <a href="/posts/">Blog posts </a><br><br>
   </div>
     <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
-        {% if new_comment %}
-        <div class="alert alert-success" role="alert">
-          Your comment has been commented
-        </div>
-        {% else %}
         <h3>Leave a comment</h3>
         <form method="post" style="margin-top: 1.3em;">
             <form method="post" style="margin-top: 1.3em;">
@@ -84,7 +79,6 @@ Go back to the <a href="/posts/">Blog posts </a><br><br>
           {% csrf_token %}
           <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
         </form>
-        {% endif %}
       </div>
     </div>
   </div>
