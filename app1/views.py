@@ -5,20 +5,19 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from .forms import PostForm,CommentForm,Goingform
+from django.urls import reverse
+from .forms import PostForm, UserUpdateForm, ProfileUpdateForm, PostForm,CommentForm
 from django.http import HttpResponseRedirect
-
+from django.contrib import messages
 
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
-    print(request.user.username)
-    form= PostForm(request.POST or None,initial={'user':request.user.username })
+    form= PostForm(request.POST or None)
 
 
     if request.method == "POST":
         if form.is_valid():
-
             form.save()
         return HttpResponseRedirect("/posts/")
 
@@ -50,15 +49,21 @@ def posts_list_view(request):
 
     return render(request, 'posts-list-view.html', context)
 
+@login_required(login_url='/accounts/login/')
 def basketball_view(request):
 
+    display = []
     allposts= Post.objects.all()
+    for post in allposts:
+        if post.category=="basketball":
+            display.append(post)
 
-    context= {'allposts': allposts,
+    context= {"allposts": display,
               }
 
     return render(request, 'basketball.html', context)
 
+@login_required(login_url='/accounts/login/')
 def pubg_view(request):
 
     display = []
@@ -72,6 +77,7 @@ def pubg_view(request):
 
     return render(request, 'pubg.html', context)
 
+@login_required(login_url='/accounts/login/')
 def cod_view(request):
 
     display = []
@@ -85,6 +91,7 @@ def cod_view(request):
 
     return render(request, 'callofduty.html', context)
 
+@login_required(login_url='/accounts/login/')
 def cricket_view(request):
 
     display = []
@@ -98,6 +105,7 @@ def cricket_view(request):
 
     return render(request, 'cricket.html', context)
 
+@login_required(login_url='/accounts/login/')
 def football_view(request):
 
     display = []
@@ -111,6 +119,7 @@ def football_view(request):
 
     return render(request, 'football.html', context)
 
+@login_required(login_url='/accounts/login/')
 def fifa_view(request):
 
     display = []
@@ -124,6 +133,7 @@ def fifa_view(request):
 
     return render(request, 'fifa.html', context)
 
+@login_required(login_url='/accounts/login/')
 def nba_view(request):
 
     display = []
@@ -137,6 +147,7 @@ def nba_view(request):
 
     return render(request, 'nba.html', context)
 
+@login_required(login_url='/accounts/login/')
 def skribbl_view(request):
 
     display = []
@@ -150,6 +161,7 @@ def skribbl_view(request):
 
     return render(request, 'skribbl.html', context)
 
+@login_required(login_url='/accounts/login/')
 def ludo_view(request):
 
     display = []
@@ -163,6 +175,7 @@ def ludo_view(request):
 
     return render(request, 'ludo.html', context)
 
+@login_required(login_url='/accounts/login/')
 def fortnite_view(request):
 
     display = []
@@ -176,6 +189,7 @@ def fortnite_view(request):
 
     return render(request, 'fortnite.html', context)
 
+@login_required(login_url='/accounts/login/')
 def uno_view(request):
 
     display = []
@@ -189,6 +203,7 @@ def uno_view(request):
 
     return render(request, 'uno.html', context)
 
+@login_required(login_url='/accounts/login/')
 def others_view(request):
 
     display = []
@@ -205,33 +220,27 @@ def others_view(request):
 def posts_detail_view(request, url=None):
 
     post= get_object_or_404(Post, url=url)
-    goings= post.goings.filter(active=True)
-    new_goings=None
+
     comments = post.comments.filter(active=True)
     new_comment = None
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
-        going_form = Goingform(data=request.POST)
-
-        if going_form.is_valid():
-            new_goings=going_form.save(commit=False)
-            new_goings.post=post
-            new_goings.save()
-
         if comment_form.is_valid():
 
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
+            urls = "/posts/"+url
+            return HttpResponseRedirect(urls)
     else:
         comment_form = CommentForm()
-        going_form=Goingform()
 
 
     context= {'post': post,
               }
 
-    return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form,'goings':goings,'new_goings':new_goings,'going_form':going_form})
+    return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form})
+
 
 def index(request):
     return render(request,'index.html')
@@ -281,5 +290,22 @@ def index2(request):
     return render(request,'index2.html')
 
 @login_required
-def profile(request):
-    return render(request, 'accounts/profile.html')
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance = request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated !')
+    else:
+        u_form = UserUpdateForm(request.POST, instance = request.user)
+        p_form = ProfileUpdateForm(request.POST, instance = request.user.profile)
+
+    context= { 'u_form':u_form,
+                'p_form':p_form,
+                'user':user
+            }
+    return render(request, 'accounts/profile.html', context)
