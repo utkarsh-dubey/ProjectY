@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Comment
+from .models import Post,Comment,Going
 from django.core.files.images import get_image_dimensions
 from django import forms
 from app1.models import Profile
@@ -42,7 +42,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('name', 'body')
-        
+
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
@@ -57,3 +57,17 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields =  ['image', 'bio', 'location']
+
+TRUE_FALSE_CHOICES = (
+    (True, 'Yes'),
+    (False, 'No')
+)
+
+class Goingform(forms.ModelForm):
+
+    class Meta:
+        model = Going
+        fields = ('name','going')
+        widgets = {
+            'going': forms.Select(choices=TRUE_FALSE_CHOICES)
+        }
