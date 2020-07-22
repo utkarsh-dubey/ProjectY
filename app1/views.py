@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
+from django.urls import reverse
 from .forms import PostForm, UserUpdateForm, ProfileUpdateForm, PostForm,CommentForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -213,6 +214,8 @@ def posts_detail_view(request, url=None):
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
+            urls = "/posts/"+url
+            return HttpResponseRedirect(urls)
     else:
         comment_form = CommentForm()
 
