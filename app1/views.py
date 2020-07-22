@@ -5,20 +5,18 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from .forms import PostForm,CommentForm
+from .forms import PostForm, UserUpdateForm, ProfileUpdateForm, PostForm,CommentForm
 from django.http import HttpResponseRedirect
-
+from django.contrib import messages
 
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
-    print(request.user.username)
-    form= PostForm(request.POST or None,initial={'user':request.user.username })
+    form= PostForm(request.POST or None)
 
 
     if request.method == "POST":
         if form.is_valid():
-           
             form.save()
         return HttpResponseRedirect("/posts/")
 
@@ -224,6 +222,7 @@ def posts_detail_view(request, url=None):
 
     return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form})
 
+
 def index(request):
     return render(request,'index.html')
 
@@ -272,5 +271,23 @@ def index2(request):
     return render(request,'index2.html')
 
 @login_required
-def profile(request):
-    return render(request, 'accounts/profile.html')
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance = request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated !')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(request.POST, instance = request.user)
+        p_form = ProfileUpdateForm(request.POST, instance = request.user.profile)
+
+    context= { 'u_form':u_form,
+                'p_form':p_form,
+                'user':user
+            }
+    return render(request, 'accounts/profile.html', context)

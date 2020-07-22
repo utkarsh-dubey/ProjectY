@@ -11,13 +11,14 @@ from .views import( posts_detail_view,
 
 urlpatterns = [
     path('',views.index,name="home"),
-    path('profile/',views.profile,name="profile"),
 
-    path('accounts/signup/',views.sign_up, name="sign_up"),
-	url(r'^index2/$', views.index2, name='loggedin'),
+    
+    url('r^login/$',views.sign_up, name="sign_up"),
+
 	url(r'^login/$',views.login_view,name="login"),
 	url(r'^posts/$', posts_list_view, name='posts_list_view'),
     url(r'^posts/(?P<url>\S+)/$', posts_detail_view, name='posts_detail_view'),
+    url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='get_user_profile'),
     url(r'^create/$', posts_create_view, name='posts_create_view'),
     url(r'^basketball', basketball_view, name='basketball'),
     path('pubg', pubg_view, name='pubg'),

@@ -12,6 +12,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    url = models.SlugField(max_length=100, unique=False, blank=True, editable=False)
     image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=30, blank=True, null=True)

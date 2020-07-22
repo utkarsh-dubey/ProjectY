@@ -6,7 +6,7 @@
 <h1 style="color: white;"> Welcome {{user}} </h1>
 <a href="/create"><button class="btn-2" style="background-color: #ffffff; color: teal;margin-left: 15%;">Create</button></a>
 <a href="/posts"><button class="btn-2" style="background-color: yellow; color: black;">View</button></a>
-<a href="{% url 'profile' %}"><button type="button" class="btn-2" style="background-color: red;">Profile</button></a>
+<a href="{% url 'get_user_profile' user.username %}"><button type="button" class="btn-2" style="background-color: red;">Profile</button></a>
 {% else %}
 
 <h1 style="color: white;">Welcome, please login or create an account to continue -</h1>
