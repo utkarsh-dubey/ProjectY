@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
-    
+
     form= PostForm(request.POST or None,initial={'user':request.user.username })
 
 
@@ -323,3 +323,16 @@ def get_user_profile(request, username):
                 'user':user
             }
     return render(request, 'accounts/profile.html', context)
+
+def home_view(request):
+
+    display = []
+    allposts= Post.objects.all()
+    for post in allposts:
+        if post.location=="online" or post.location == request.user.profile.location:
+            display.append(post)
+
+    context= {"allposts": display,
+              }
+
+    return render(request, 'posts2.html', context)
