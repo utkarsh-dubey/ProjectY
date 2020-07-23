@@ -1,3 +1,5 @@
+
+{% load crispy_forms_tags %}
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,6 +10,77 @@
 <h1>{{ post.title }}</h1>
 
 <p>Content: {{ post.content }}</p>
-<p>Author: {{ post.user }}</p>
-<p>Category: {{ post.category }}</p>
+<p>Author: <a href="/user/profile/{{post.author}}">{{ post.user }}</a></p>
+<p>Category: <a href="/{{post.category}}"> {{ post.category }}</a></p>
+<p>Location: {{post.location}}</p>
 Go back to the <a href="/posts/">Blog posts </a><br><br>
+
+
+
+
+<div class="col-md-8 card mb-4  mt-3 ">
+  <div class="card-body">
+
+  </div>
+    <h2>{{ goings.count }} People are going.</h2>
+
+   
+  </div>
+</div>
+
+
+
+    <div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+
+      </div>
+        <h2>{{ comments.count }} comments</h2>
+
+        {% for comment in comments %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+           <a href="/user/profile/{{comment.name}}"> {{ comment.name }}</a>
+            <span class=" text-muted font-weight-normal">
+              {{ comment.created_on }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-8 card mb-4  mt-3 ">
+     <div class="card-body">
+      {% if new_goings %}
+      <div class="alert alert-success" role="alert">
+         Your response was updated
+      </div>
+      {% else %}
+      <h3>Let us know if you are going or not</h3>
+      <form method="post" style="margin-top: 1.3em;">
+         <form method="post" style="margin-top: 1.3em;">
+         {{ going_form | crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+      </form>
+      {% endif %}
+     </div>
+  </div>
+    <div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        <h3>Leave a comment</h3>
+        <form method="post" style="margin-top: 1.3em;">
+            <form method="post" style="margin-top: 1.3em;">
+
+
+                <div id="div_id_name" class="form-group"> <label for="id_name" class="control-label  requiredField">
+                                Name<span class="asteriskField">*</span> </label> <div class="controls "> <input type="text" name="name" maxlength="80" class="textinput textInput form-control" required id="id_name" value={{user}} readonly> </div> </div> <div id="div_id_body" class="form-group"> <label for="id_body" class="control-label  requiredField">
+                                Body<span class="asteriskField">*</span> </label> <div class="controls "> <textarea name="body" cols="40" rows="10" class="textarea form-control" required id="id_body">
+                </textarea> </div> </div>
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

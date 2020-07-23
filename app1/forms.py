@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post,Comment,Going
 from django.core.files.images import get_image_dimensions
 from django import forms
 from app1.models import Profile
@@ -14,7 +14,7 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Required')
     last_name = forms.CharField(max_length=30, required=True, help_text='Required')
     email = forms.EmailField(max_length=254, required = False, help_text='optional')
-    location = forms.CharField(max_length=20, required = False, help_text='optional')
+    location = forms.CharField(max_length=20, required = True, help_text='Required')
     birth_date = forms.DateField(required = False, help_text='optional, Format: YYYY-MM-DD')
     class Meta:
         model = User
@@ -35,18 +35,39 @@ class UserForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model= Post
-        fields= ["title", "content", "category"]
+        fields= ["title", "user","location","content", "category"]
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('name', 'body')
+
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['email', 'first_name', 'last_name']
 
 
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields =  ['image']
+        fields =  ['image', 'bio', 'location']
+
+TRUE_FALSE_CHOICES = (
+    (True, 'Yes'),
+    (False, 'No')
+)
+
+class Goingform(forms.ModelForm):
+
+    class Meta:
+        model = Going
+        fields = ('name','going')
+        widgets = {
+            'going': forms.Select(choices=TRUE_FALSE_CHOICES)
+        }

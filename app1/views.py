@@ -5,18 +5,20 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 from app1.forms import SignUpForm
-from .forms import PostForm, UserUpdateForm, ProfileUpdateForm
+from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
-from django.contrib import messages
+
 
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
-    form= PostForm(request.POST or None)
+    print(request.user.username)
+    form= PostForm(request.POST or None,initial={'user':request.user.username })
 
 
     if request.method == "POST":
         if form.is_valid():
+
             form.save()
         return HttpResponseRedirect("/posts/")
 
@@ -50,9 +52,13 @@ def posts_list_view(request):
 
 def basketball_view(request):
 
+    display = []
     allposts= Post.objects.all()
+    for post in allposts:
+        if post.category=="basketball":
+            display.append(post)
 
-    context= {'allposts': allposts,
+    context= {"allposts": display,
               }
 
     return render(request, 'basketball.html', context)
@@ -69,6 +75,19 @@ def pubg_view(request):
               }
 
     return render(request, 'pubg.html', context)
+
+def home_view(request):
+
+    display = []
+    allposts= Post.objects.all()
+    for post in allposts:
+        if post.location=="online" or post.location == request.user.profile.location:
+            display.append(post)
+
+    context= {"allposts": display,
+              }
+
+    return render(request, 'posts2.html', context)
 
 def cod_view(request):
 
@@ -203,14 +222,58 @@ def others_view(request):
 def posts_detail_view(request, url=None):
 
     post= get_object_or_404(Post, url=url)
+    goings= post.goings.filter(active=True)
+    impcheck=True
+    for i in goings:
+
+        if i.name==request.user.username:
+
+            impcheck=False
+            break
+
+    new_goings=None
+    comments = post.comments.filter(active=True)
+    new_comment = None
+    if request.method == 'POST':
+
+        comment_form = CommentForm(data=request.POST)
+        if impcheck:
+
+            going_form = Goingform(data=request.POST)
+            if going_form.is_valid():
+                if request.POST.get('going',False)!='False':
+
+                    new_goings=going_form.save(commit=False)
+                    new_goings.post=post
+                    new_goings.save()
+                else:
+                    pass
+        else:
+
+            going_form=[]
+            new_goings=True
 
 
+        if comment_form.is_valid():
+
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+            urls = "/posts/"+url
+            return HttpResponseRedirect(urls)
+    else:
+        comment_form = CommentForm()
+        if not impcheck:
+            new_goings=True
+            going_form=[]
+        else:
+            going_form=Goingform()
 
 
     context= {'post': post,
-    }
+              }
 
-    return render(request, 'posts-detail-view.html', context)
+    return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form,'goings':goings,'new_goings':new_goings,'going_form':going_form})
 
 def index(request):
     return render(request,'index.html')
@@ -222,6 +285,7 @@ def sign_up(request):
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.email = form.cleaned_data.get('email')
+            user.profile.location = form.cleaned_data.get('location')
             user.profile.first_name = form.cleaned_data.get('first_name')
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.save()
@@ -260,7 +324,8 @@ def index2(request):
     return render(request,'index2.html')
 
 @login_required
-def profile(request):
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
@@ -269,12 +334,12 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated !')
-            return redirect('profile')
     else:
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, instance = request.user.profile)
 
     context= { 'u_form':u_form,
-                'p_form':p_form
+                'p_form':p_form,
+                'user':user
             }
     return render(request, 'accounts/profile.html', context)
