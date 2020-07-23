@@ -16,9 +16,29 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Profile Info!</legend>
-            {{ u_form|crispy }}
-            {{ p_form|crispy }}
-        </fieldset>
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile Info!</legend>
+              
+  
+  <div id="div_id_email" class="form-group has-error"> <label for="id_email" class="control-label  requiredField">
+                  Email<span class="asteriskField">*</span> </label> <div class="controls "> <input type="email" name="email" class="emailinput form-control form-control-danger" required="" id="id_email" value={{user.email}}> <p id="error_1_id_email" class="help-block"><strong>This field is required.</strong></p> </div> </div> <div id="div_id_first_name" class="form-group"> <label for="id_first_name" class="control-label ">
+                  First name
+              </label> <div class="controls "> <input type="text" name="first_name" maxlength="30" class="textinput textInput form-control" id="id_first_name" value={{user.profile.first_name}}> </div> </div> <div id="div_id_last_name" class="form-group"> <label for="id_last_name" class="control-label ">
+                  Last name
+              </label> <div class="controls "> <input type="text" name="last_name" maxlength="150" class="textinput textInput form-control" id="id_last_name" value={{user.profile.last_name}}> </div> </div>
+  
+              
+  
+  <div id="div_id_image" class="form-group"> <label for="id_image" class="control-label  requiredField">
+                  Image<span class="asteriskField">*</span> </label> <div class="controls ">
+                      Currently: <a href="/media/default.jpeg">default.jpeg</a><br>
+  Change:
+  <input type="file" name="image" accept="image/*" class="clearablefileinput" id="id_image"> </div> </div> <div id="div_id_bio" class="form-group"> <label for="id_bio" class="control-label ">
+                  Bio
+              </label> <div class="controls "> <textarea name="bio" cols="40" rows="10" maxlength="500" class="textarea form-control" id="id_bio"></textarea> </div> </div> <div id="div_id_location" class="form-group has-error"> <label for="id_location" class="control-label  requiredField" value={{user.profile.bio}}>
+                  Location<span class="asteriskField">*</span> </label> <div class="controls "> <input type="text" name="location" value={{user.profile.location}} maxlength="30" class="textinput textInput form-control form-control-danger" required="" id="id_location"> <p id="error_1_id_location" class="help-block"><strong>This field is required.</strong></p> </div> </div>
+  
+              </fieldset>        </fieldset>
           <div class="form-group">
             <button class="btn btn-outline-info" type="submit" >Update!</button>
           </div>
