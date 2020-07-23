@@ -9,7 +9,7 @@ from app1.forms import SignUpForm
 from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-
+from .filters import PostFilter
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
@@ -46,7 +46,10 @@ def posts_list_view(request):
 
     allposts= Post.objects.all()
 
-    context= {'allposts': allposts,
+    myFilter = PostFilter(request.GET, queryset=allposts )
+    allposts = myFilter.qs 
+
+    context= {'allposts': allposts, 'myFilter': myFilter
               }
 
     return render(request, 'posts-list-view.html', context)

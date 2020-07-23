@@ -7,13 +7,31 @@
   <body>
 
     <h1>List of Posts</h1>
+    <br>
+    <div class="row">
+      <div class="col">
+        <div class="card card-body">
+          <form method="get">
 
+            {{myFilter.form}}
+
+
+            <button class="btn btn-primary" type="submit" >Search</button>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+    <br><br><br>
     {% for post in allposts %}
     <a href='/posts/{{ post.url }}/'>{{ post.title }} </a>
     <br><br>
 
     <br><br>
     {% endfor %}
+
 
   </body>
   <script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>

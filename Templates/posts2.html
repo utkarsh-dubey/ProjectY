@@ -1,13 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>All posts</title>
+  </head>
+  <body>
+
+    {% block content%}
+
+    <div class="row">
+      <div class="col">
+        <div class="card card-body">
+          <form method="get">
+
+            {{myFilter.form}}
 
 
-{% block content%}
-<h1>Events you may be interested in </h1>
-{% for post in allposts %}
-<a href='/posts/{{ post.url }}/'>{{ post.title }} </a> Category - {{ post.category }}
-<br>
-Content - {{post.content}}
-<br><br>
+            <button class="btn btn-primary" type="submit" >Search</button>
+          </form>
 
-{% endfor %}
+        </div>
 
-{%endblock%}
+      </div>
+
+    </div>
+
+        <h1>Events you may be interested in </h1>
+        {% for post in allposts %}
+        <a href='/posts/{{ post.url }}/'>{{ post.title }} </a> Category - {{ post.category }}
+        <br>
+        Content - {{post.content}}
+        <br><br>
+        {% endfor %}
+
+    {%endblock%}
+  </body>
+</html>
