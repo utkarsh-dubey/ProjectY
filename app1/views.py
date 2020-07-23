@@ -47,7 +47,7 @@ def posts_list_view(request):
     allposts= Post.objects.all()
 
     myFilter = PostFilter(request.GET, queryset=allposts )
-    allposts = myFilter.qs 
+    allposts = myFilter.qs
 
     context= {'allposts': allposts, 'myFilter': myFilter
               }
@@ -84,11 +84,14 @@ def home_view(request):
 
     display = []
     allposts= Post.objects.all()
+    myFilter = PostFilter(request.GET, queryset=allposts )
+    allposts = myFilter.qs
+
     for post in allposts:
         if post.location=="online" or post.location == request.user.profile.location:
             display.append(post)
 
-    context= {"allposts": display,
+    context= {'allposts': display, 'myFilter': myFilter,
               }
 
     return render(request, 'posts2.html', context)
