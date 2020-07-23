@@ -3,7 +3,9 @@
 {% block content%}
 <h1>Events you may be interested in </h1>
 {% for post in allposts %}
-<a href='/posts/{{ post.url }}/'>{{ post.title }} </a>
+<a href='/posts/{{ post.url }}/'>{{ post.title }} </a> Category - {{ post.category }}
+<br>
+Content - {{post.content}}
 <br><br>
 
 {% endfor %}
