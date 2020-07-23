@@ -1,4 +1,3 @@
-
 {% load crispy_forms_tags %}
 <html>
 <head>
@@ -10,9 +9,8 @@
 <h1>{{ post.title }}</h1>
 
 <p>Content: {{ post.content }}</p>
-<p>Author: <a href="/user/profile/{{post.user}}">{{ post.user }}</a></p>
+<p>Author: <a href="/user/profile/{{post.author}}">{{ post.user }}</a></p>
 <p>Category: <a href="/{{post.category}}"> {{ post.category }}</a></p>
-<p>Location: {{post.location}}</p>
 Go back to the <a href="/posts/">Blog posts </a><br><br>
 
 
@@ -27,6 +25,8 @@ Go back to the <a href="/posts/">Blog posts </a><br><br>
 
   </div>
 </div>
+
+
 
     <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
@@ -57,7 +57,12 @@ Go back to the <a href="/posts/">Blog posts </a><br><br>
       <h3>Let us know if you are going or not</h3>
       <form method="post" style="margin-top: 1.3em;">
          <form method="post" style="margin-top: 1.3em;">
-         {{ going_form | crispy }}
+            <div id="div_id_name" class="form-group"> <label for="id_name" class="control-label  requiredField">
+                   Name<span class="asteriskField">*</span> </label> <div class="controls "> <input type="text" name="name" maxlength="80" class="textinput textInput form-control" required="" id="id_name" value={{user}} readonly > </div> </div> <div id="div_id_going" class="form-group"> <label for="id_going" class="control-label ">
+                   Going
+               </label> <div class="controls "> <select name="going" class="select form-control" id="id_going"> <option value="True">Yes</option> <option value="False" selected="">No</option>
+
+   </select> </div> </div>
         {% csrf_token %}
         <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
       </form>
