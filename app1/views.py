@@ -7,7 +7,7 @@ from .models import Post
 from app1.forms import SignUpForm
 from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
-
+from django.contrib import messages
 
 #create view
 @login_required(login_url='/accounts/login/')
