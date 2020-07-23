@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -8,12 +7,12 @@ from .models import Post
 from app1.forms import SignUpForm
 from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
-from django.contrib import messages
-from .filters import PostFilter
+
+
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
-    print(request.user.username)
+    
     form= PostForm(request.POST or None,initial={'user':request.user.username })
 
 
@@ -46,23 +45,16 @@ def posts_list_view(request):
 
     allposts= Post.objects.all()
 
-    myFilter = PostFilter(request.GET, queryset=allposts )
-    allposts = myFilter.qs
-
-    context= {'allposts': allposts, 'myFilter': myFilter
+    context= {'allposts': allposts,
               }
 
     return render(request, 'posts-list-view.html', context)
 
 def basketball_view(request):
 
-    display = []
     allposts= Post.objects.all()
-    for post in allposts:
-        if post.category=="basketball":
-            display.append(post)
 
-    context= {"allposts": display,
+    context= {'allposts': allposts,
               }
 
     return render(request, 'basketball.html', context)
@@ -79,22 +71,6 @@ def pubg_view(request):
               }
 
     return render(request, 'pubg.html', context)
-
-def home_view(request):
-
-    display = []
-    allposts= Post.objects.all()
-    myFilter = PostFilter(request.GET, queryset=allposts )
-    allposts = myFilter.qs
-
-    for post in allposts:
-        if post.location=="online" or post.location == request.user.profile.location:
-            display.append(post)
-
-    context= {'allposts': display, 'myFilter': myFilter,
-              }
-
-    return render(request, 'posts2.html', context)
 
 def cod_view(request):
 
@@ -266,8 +242,6 @@ def posts_detail_view(request, url=None):
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
-            urls = "/posts/"+url
-            return HttpResponseRedirect(urls)
     else:
         comment_form = CommentForm()
         if not impcheck:
@@ -292,7 +266,6 @@ def sign_up(request):
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.email = form.cleaned_data.get('email')
-            user.profile.location = form.cleaned_data.get('location')
             user.profile.first_name = form.cleaned_data.get('first_name')
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.save()
@@ -340,6 +313,7 @@ def get_user_profile(request, username):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
+            messages.success(request, f'Your account has been updated !')
     else:
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, instance = request.user.profile)
