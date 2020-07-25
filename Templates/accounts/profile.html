@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
@@ -12,6 +13,7 @@
           <p class="text-secondary">Bio - {{ user.profile.bio }}</p>
         </div>
       </div>
+      {% if request.user.username == user.username %}
       <form method ="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -47,4 +49,5 @@
 
 
     </div>
+    {% endif %}
 {% endblock content %}
