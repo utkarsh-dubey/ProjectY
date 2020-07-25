@@ -1,9 +1,6 @@
 
 <title>ProjectY</title>
 <style>
-  .text-secondary{
-    color: white;
-  }
   .sidenav {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
@@ -171,11 +168,11 @@
 
 
   .image {
-    background-image: linear-gradient(to right, teal,rgba(0, 0, 50, 0.7)),url('/static/pbg.jpg');
+    background-image: linear-gradient(rgb(255, 0, 0),rgba(0,0,0,0.9)),url('/static/background.jpg');
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
     
     /* Full height */
-    height: 100vh;
+    height: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -240,10 +237,11 @@
     
     <p class="top-menu">
       Hello, {{request.user.username}}<a href="/accounts/logout/" class="top-menu"><small>(Log out)</small></a></p>
+    <h1><a href="/user/profile/imnew"><button type="button" class="btn btn">Profile</button></a></h1>
 
     
     <div style="border-width: thick;
-    margin-top: -8%;
+    margin-top: -10%;
     border-left: 30px;
     border-left-color: skyblue;
     border-right: 50px;
@@ -264,31 +262,21 @@
   </div>
 
   <div class="content container">
-    <div class="row" >
-      <div class="col-md-8" style="border-left-style: outset;
-      text-align: center;
-      margin-left: 10%;
-      color: white;
-      background-image: linear-gradient(45deg, black, transparent);
-      border-bottom-style: outset;
-      border-color: green;">
+    <div class="row">
+      <div class="col-md-8">
         
 
         
     <div class="content-section">
-       <div style="text-align: center;"> <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100" height="120"><br><br>
-       </div><div class="media">
-       <div class="media-body">
-          <h1 class="account-heading" style="
-          color: yellow;
-          background: black;
-          border: solid;
-          border-color: yellow;">{{user.username}}</h2>
-          <p>Email - {{user.email}}</p>
-          <p>First Name - {{user.first_name}}</p>
-          <p>Last Name - {{user.last_name}}</p>
-          <p>Location - {{user.profle.location}}</p>
-          <p>Bio - {{user.profile.bio}}</p>
+      <div class="media">
+        <img class="rounded-circle account-img" src="/media/default.jpeg" width="100" height="120">
+        <div class="media-body">
+          <h2 class="account-heading">Username - imnew</h2>
+          <p class="text-secondary">Email - archits1702@gmail.com</p>
+          <p class="text-secondary">First Name - Archit</p>
+          <p class="text-secondary">Last Name - Soni</p>
+          <p class="text-secondary">Location - Edmonton</p>
+          <p class="text-secondary">Bio - Hi, my name is Archit</p>
         </div>
       </div>
       
