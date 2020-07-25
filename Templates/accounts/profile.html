@@ -1,345 +1,34 @@
-
-<title>ProjectY</title>
-<style>
-  .text-secondary{
-    color: white;
-  }
-  .sidenav {
-    height: 100%;
-    /* Full-height: remove this if you want "auto" height */
-    width: 0;
-    /* Set the width of the sidebar */
-    position: fixed;
-    /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1;
-    /* Stay on top */
-    top: 0;
-    /* Stay at the top */
-    left: 0;
-    background-color: #111;
-    /* Black */
-    overflow-x: hidden;
-    /* Disable horizontal scroll */
-    padding-top: 20px;
-  }
-
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #f1f1f1;
-    display: block;
-    transition: 0.3s;
-  }
-
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-
-  .openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-}
-
-.openbtn:hover {
-  background-color: #444;
-}
-
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #818181;
-  }
-
-  @media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
-
-  #main {
-  transition: margin-left .5s; /* If you want a transition effect */
-  padding: 20px;
-}
-
-  /* Style page content */
-  .main {
-    margin-left: 160px;
-    /* Same as the width of the sidebar */
-    padding: 0px 10px;
-  }
-
-  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidenav {
-      padding-top: 15px;
-    }
-
-    .sidenav a {
-      font-size: 18px;
-    }
-  }
-
-  button[type=submit] {
-  position: relative;
-  background-color: #4CAF50;
-  border: none;
-  font-size: 28px;
-  color: #FFFFFF;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  }
-
-
-  .btn-2 {
-  background-color: #f4511e;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  opacity: 0.8;
-  transition: 0.3s;
-  margin: 5%;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btn-2:hover {opacity: 1}
-
-  .btn-1 {
-  display: inline;
-  border-radius: 4px;
-  background-color: #f4511e;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.btn-1 span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.btn-1 span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.btn-1:hover span {
-  padding-right: 25px;
-}
-
-.btn-1:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-
-  .MyDiv {
-    text-align: center;
-  }
-
-  .bg-dark {
-    background-image: linear-gradient(180deg, hotpink, grey);
-  }
-
-
-  .image {
-    background-image: linear-gradient(to right, teal,rgba(0, 0, 50, 0.7)),url('/static/pbg.jpg');
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
-
-    /* Full height */
-    height: 100vh;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    vertical-align: middle;
-    border-style: solid;
-    border-bottom-color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .navbar-brand {
-    display: inline-block;
-    padding-top: .3125rem;
-    padding-bottom: .3125rem;
-    margin-right: 1rem;
-    font-size: 2.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-  }
-
-  h1 {
-    font-weight: 500;
-    line-height: 1.2;
-    text-align: center;
-    margin-bottom: 5%;
-    margin-top: 2%;
-  }
-  ::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 10px rgba(0,128,128);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 20px rgba(0,139,1139);
-}
-</style>
-<meta charset="utf-8">
-<title></title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="/static/app1.css">
-
-</head>
-
-<body>
-
-  <div class="image">
-
-  <div id="mySidebar" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="basketball">Basketball</a>
-    <a href="callofduty">Call of Duty</a>
-    <a href="cricket">Cricket</a>
-    <a href="fifa">FIFA</a>
-    <a href="football">Football/Soccer</a>
-    <a href="fortnite">Fortnite</a>
-    <a href="ludo">Ludo King</a>
-    <a href="nba">NBA</a>
-    <a href="pubg">PUBG</a>
-    <a href="skribbl">Skribbl.io</a>
-    <a href="uno">Uno!</a>
-    <a href="others">Others</a>
-  </div>
-
-
-  <div class="page-header">
-    <div id="main">
-      <button class="openbtn" onclick="openNav()">☰</button>
-    </div>
-
-    <p class="top-menu">
-      Hello, {{request.user.username}}<a href="/accounts/logout/" class="top-menu"><small>(Log out)</small></a></p>
-
-
-    <div style="border-width: thick;
-    margin-top: -8%;
-    border-left: 30px;
-    border-left-color: skyblue;
-    border-right: 50px;
-    border-right-color: orange;
-    background-color: rgba( 18, 14, 0.925);
-    width: 25%;
-    margin-left: 35%;
-    margin-bottom: 3%;
-    border-radius: 40%;
-    border-right-style: double;
-    border-left-style: double;">
-    <h1 style="text-shadow:1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue"><a href="/" title="Home Page" style="color: yellow;
-      font-family: sans-serif;
-      font-style: italic;
-      font-weight: bold;
-      text-decoration-color: skyblue;">Sports & Games</a><i class="fas fa-blog"></i></h1>
-    </div>
-  </div>
-
-  <div class="content container">
-    <div class="row" >
-      <div class="col-md-8" style="border-left-style: outset;
-      text-align: center;
-      margin-left: 10%;
-      color: white;
-      background-image: linear-gradient(45deg, black, transparent);
-      border-bottom-style: outset;
-      border-color: green;">
-
-
-
+{% load crispy_forms_tags %}
+{% block content %}
     <div class="content-section">
-       <div style="text-align: center;"> <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100" height="120"><br><br>
-       </div><div class="media">
-       <div class="media-body">
-          <h1 class="account-heading" style="
-          color: yellow;
-          background: black;
-          border: solid;
-          border-color: yellow;">{{user.username}}</h2>
-          <p>Email - {{user.email}}</p>
-          <p>First Name - {{user.first_name}}</p>
-          <p>Last Name - {{user.last_name}}</p>
-          <p>Location - {{user.profle.location}}</p>
-          <p>Bio - {{user.profile.bio}}</p>
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100" height="120">
+        <div class="media-body">
+          <h2 class="account-heading">Username - {{ user.username }}</h2>
+          <p class="text-secondary">Email - {{ user.email }}</p>
+          <p class="text-secondary">First Name - {{ user.first_name }}</p>
+          <p class="text-secondary">Last Name - {{ user.last_name }}</p>
+          <p class="text-secondary">Location - {{ user.profile.location }}</p>
+          <p class="text-secondary">Bio - {{ user.profile.bio }}</p>
         </div>
       </div>
-
-
-
-      </div>
-    </div>
-  </div>
-</div>
-  <script>
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
-      document.getElementById("main").style.marginLeft= "0";
-    }
-    </script>
-      {% if request.user.username == user.username %}
       <form method ="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Profile Info!</legend>
             <fieldset class="form-group">
               <legend class="border-bottom mb-4">Profile Info!</legend>
-
-
+              
+  
   <div id="div_id_email" class="form-group has-error"> <label for="id_email" class="control-label  requiredField">
                   Email<span class="asteriskField">*</span> </label> <div class="controls "> <input type="email" name="email" class="emailinput form-control form-control-danger" required="" id="id_email" value={{user.email}}> <p id="error_1_id_email" class="help-block"><strong>This field is required.</strong></p> </div> </div> <div id="div_id_first_name" class="form-group"> <label for="id_first_name" class="control-label ">
                   First name
               </label> <div class="controls "> <input type="text" name="first_name" maxlength="30" class="textinput textInput form-control" id="id_first_name" value={{user.profile.first_name}}> </div> </div> <div id="div_id_last_name" class="form-group"> <label for="id_last_name" class="control-label ">
                   Last name
               </label> <div class="controls "> <input type="text" name="last_name" maxlength="150" class="textinput textInput form-control" id="id_last_name" value={{user.profile.last_name}}> </div> </div>
-
-
-
+  
+              
+  
   <div id="div_id_image" class="form-group"> <label for="id_image" class="control-label  requiredField">
                   Image<span class="asteriskField">*</span> </label> <div class="controls ">
                       Currently: <a href="/media/default.jpeg">default.jpeg</a><br>
@@ -348,7 +37,7 @@
                   Bio
               </label> <div class="controls "> <textarea name="bio" cols="40" rows="10" maxlength="500" class="textarea form-control" id="id_bio"></textarea> </div> </div> <div id="div_id_location" class="form-group has-error"> <label for="id_location" class="control-label  requiredField" value={{user.profile.bio}}>
                   Location<span class="asteriskField">*</span> </label> <div class="controls "> <input type="text" name="location" value={{user.profile.location}} maxlength="30" class="textinput textInput form-control form-control-danger" required="" id="id_location"> <p id="error_1_id_location" class="help-block"><strong>This field is required.</strong></p> </div> </div>
-
+  
               </fieldset>        </fieldset>
           <div class="form-group">
             <button class="btn btn-outline-info" type="submit" >Update!</button>
@@ -358,5 +47,4 @@
 
 
     </div>
-    {% endif %}
-</body>
+{% endblock content %}
