@@ -12,7 +12,7 @@ from .views import( posts_detail_view,
 urlpatterns = [
     path('',views.index,name="home"),
 
-    path('registration/signup',views.sign_up, name="sign_up"),
+    path('signup',views.sign_up, name="sign_up"),
     path('posts2', views.home_view, name='posts'),
 	url(r'^login/$',views.login_view,name="login"),
 	url(r'^posts/$', posts_list_view, name='posts_list_view'),
