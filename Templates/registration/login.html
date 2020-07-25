@@ -250,7 +250,7 @@
 
       <h3>Login</h3>
       <form class="" action="" method="post">
-        {% csrf_token %}
+        <input type="hidden" name="csrfmiddlewaretoken" value="t9Q5FP3tiBj9eiB8BQz4KRpzJhb3ttKW9YbsU4JZFmdT3mldeEHWDUHclYbT87Bq">
         <p><label for="id_username">Username:</label> <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username"></p>
 <p><label for="id_password">Password:</label> <input type="password" name="password" autocomplete="current-password" required id="id_password"></p>
         <button type="submit" name="button" class="btn btn-primary">login</button>
