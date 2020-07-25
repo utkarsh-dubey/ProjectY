@@ -3,8 +3,8 @@
 {% block content%}
 
 {% if user.is_authenticated %}
-<div class="image">
-<h1 style="color: white;"> Welcome {{user}} </h1>
+<div style="background-color: rgba(50, 0, 139, 0.3); box-shadow: 10px 10px 5px; margin-left: 20%; width: 100%; border">
+    <h1 style="color: white;"> Welcome {{user}} </h1>
 <a href="/create"><button class="btn-2" style="background-color: #ffffff; color: teal;margin-left: 15%;">Create</button></a>
 <a href="/posts2"><button class="btn-2" style="background-color: yellow; color: black;">View</button></a>
 <a href="{% url 'get_user_profile' user.username %}"><button type="button" class="btn-2" style="background-color: red;">Profile</button></a>
@@ -24,7 +24,7 @@
     border-top-style: groove;
     border-radius: 50%;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"><span>Sign Up!</span></button></a>
-<a href="accounts/login"><button class="btn-1" style="margin-left: 20%;
+<a href="accounts/login?next=/"><button class="btn-1" style="margin-left: 20%;
     margin-left: 20%;
     border-bottom-style: ridge;
     background-color: transparent;
