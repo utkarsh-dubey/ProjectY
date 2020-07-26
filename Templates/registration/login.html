@@ -18,10 +18,11 @@
 
 		<div class="content-w3ls">
 			<div class="text-center icon">
-				<span class="fa fa-html5"></span>
+				<span class="fa fa-sign-in"></span>
 			</div>
 			<div class="content-bottom">
 				<form class ="" action="" method="post">
+
                <input type="hidden" name="csrfmiddlewaretoken" value="zVYZXXHC6iTRoZmO2iCQdLosGjcLgdUDXZtVeMCPVG2gMtCLcK0eH3ZIxEBhNtBE">
 					<div class="field-group">
 						<span class="fa fa-user" aria-hidden="true"></span>
@@ -30,12 +31,15 @@
 						</div>
 					</div>
 					<div class="field-group">
+
 						<span class="fa fa-lock" aria-hidden="true"></span>
 						<div class="wthree-field">
 							<input name="password" id="id_password" type="Password" placeholder="Password">
 						</div>
 					</div>
 					<div class="wthree-field">
+
+                  {% csrf_token %}
 						<button type="submit" class="btn">Get Started</button>
 					</div>
 					<br>

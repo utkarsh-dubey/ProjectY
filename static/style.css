@@ -1,11 +1,14 @@
 
-
+html{
+   height:100%;
+}
 
 body {
 
 
-  background-image: url('/static/background.jpg');
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+  background: url('/static/login.jpg');
+
+
 
   /* Full height */
   height: 100%;
@@ -15,11 +18,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 
-
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;2
+  font-size: 100%;
   font: inherit;
   vertical-align: baseline;
 
@@ -40,9 +42,10 @@ img {
 h1 {
   font-weight: 500;
   line-height: 1.2;
-  text-align: center;
-  margin-bottom: 5%;
-  margin-top: 2%;
+
+  text-align:center;
+
+
 }
 
 
@@ -122,17 +125,17 @@ background-color: #444;
 .sidebar a {font-size: 18px;}
 }
 
-#main {
+/* #main {
 transition: margin-left .5s; /* If you want a transition effect */
-padding: 20px;
-}
+/* padding: 20px;
+} */
 
 /* Style page content */
-.main {
-  margin-left: 160px;
+/* .main {
+  margin-left: 140px;
   /* Same as the width of the sidebar */
-  padding: 0px 10px;
-}
+  /* padding: 0px 10px;
+} */
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -235,10 +238,19 @@ right: 0;
   text-align: center;
 }
 
-.bg-dark {
-  background-image: linear-gradient(180deg, hotpink, grey);
+::-webkit-scrollbar {
+  width: 12px;
 }
 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 10px rgba(0,128,128);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 20px rgba(0,139,1139);
+}
 
 
 
@@ -249,17 +261,16 @@ body {
 	font-family: 'Mukta', sans-serif;
 }
 .main {
-    background: url("C:\\Users\\Utkarsh\\Documents\\GitHub\\ProjectY\\static\\login.jpg") no-repeat center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
+    /* background: url('/static/login.jpg') no-repeat center; */
+
+
 	position: relative;
+   margin-top:-8%;
     min-height: 100vh;
+    margin-left:250px;
 }
 .layer {
-    padding: 2em 0;
+    padding: 1em 0;
 }
 .text-center {
     text-align: center;
@@ -268,7 +279,7 @@ body {
 /*/////////////// FONT STYLES ////////////////////*/
 
 .content-w3ls {
-    max-width: 500px;
+    max-width: 600px;
     margin: 6em auto;
 }
 ul.links-unordered-list li.active a {
