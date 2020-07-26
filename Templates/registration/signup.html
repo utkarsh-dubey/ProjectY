@@ -2,12 +2,92 @@
 
 {% block content %}
 
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Sign up">
-</form>
 
+<section class="main">
+	<div class="layer">
+
+
+		<div class="content-w3ls">
+			<div class="text-center icon">
+				<span class="fa fa-user-plus"></span>
+			</div>
+			<div class="content-bottom">
+				<form class ="" action="" method="post">
+
+               <input type="hidden" name="csrfmiddlewaretoken" value="ENFl0JdV33g3XP2j0dFcEvXdpppC2VHMmk4LxZCWUUYPjEjoGRVNU5iyfWCJHCqJ">
+					<div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username" placeholder="Username" ><span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+						</div>
+					</div>
+               <div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="text" name="first_name" maxlength="30" required="" id="id_first_name" placeholder="First Name"><span class="helptext">Required. </span>
+						</div>
+					</div>
+               <div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="text" name="last_name" maxlength="30" required="" id="id_last_name" placeholder="Last Name"><span class="helptext">Required. </span>
+						</div>
+					</div>
+               <div class="field-group">
+						<span class="fa fa-envelope " aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="email" name="email" maxlength="254" id="id_email" placeholder="Email"><span class="helptext">Optional. </span>
+						</div>
+					</div>
+
+               <div class="field-group">
+						<span class="fa fa-map-marker" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="text" name="location" maxlength="20" required="" id="id_location" placeholder="Location"><span class="helptext">Required. </span>
+						</div>
+					</div>
+
+               <div class="field-group">
+						<span class="fa fa-calendar " aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="text" name="birth_date" id="id_birth_date" placeholder="Birth Date"><span class="helptext">Optional, Format: YYYY-MM-DD </span>
+						</div>
+					</div>
+
+
+					<div class="field-group">
+
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="Password">
+						</div>
+					</div>
+
+               <div class="field-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="Confirm Password">
+						</div>
+					</div>
+
+					<div class="wthree-field">
+
+                  {% csrf_token %}
+						<button type="submit" value ="Sign up" class="btn">Sign up</button>
+					</div>
+					<br>
+					<ul class="list-login-bottom">
+						<li class="">
+							<a href="{% url 'login' %}" class="">Login instead.</a>
+						</li>
+
+						<li class="clearfix"></li>
+					</ul>
+				</form>
+			</div>
+		</div>
+
+</section>
 
 
 {% endblock %}
