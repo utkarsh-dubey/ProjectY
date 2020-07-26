@@ -7,7 +7,7 @@ from .models import Post
 from app1.forms import SignUpForm
 from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
-
+from .filters import PostFilter
 
 #create view
 @login_required(login_url='/accounts/login/')
@@ -44,8 +44,10 @@ def post_draft_list(request):
 def posts_list_view(request):
 
     allposts= Post.objects.all()
+    myFilter = PostFilter(request.GET, queryset=allposts )
+    allposts = myFilter.qs
 
-    context= {'allposts': allposts,
+    context= {'allposts': allposts,'myFilter': myFilter
               }
 
     return render(request, 'posts-list-view.html', context)
@@ -328,11 +330,15 @@ def home_view(request):
 
     display = []
     allposts= Post.objects.all()
+
+    myFilter = PostFilter(request.GET, queryset=allposts )
+    allposts = myFilter.qs
+
     for post in allposts:
         if post.location=="online" or post.location == request.user.profile.location:
             display.append(post)
 
-    context= {"allposts": display,
+    context= {'allposts': display,'myFilter': myFilter,
               }
 
     return render(request, 'posts2.html', context)
