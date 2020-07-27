@@ -277,7 +277,7 @@ def sign_up(request):
             return render(request, 'index.html')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
 #@login_required
 #def index2(request):
 #    return render(request, 'index2.html')

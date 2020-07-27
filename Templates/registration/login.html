@@ -3,39 +3,34 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 
-      <h3>Login</h3>
-      <form class="" action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" name="button" class="btn btn-primary">login</button>
-      </form>
-      <p>Dont have an account ? <a href="{% url 'sign_up' %}"> Sign Up Here!</a></p>
-
-
-
-<!-- <section class="main">
+<section class="main">
 	<div class="layer">
 
 
 		<div class="content-w3ls">
 			<div class="text-center icon">
-				<span class="fa fa-html5"></span>
+				<span class="fa fa-sign-in"></span>
 			</div>
 			<div class="content-bottom">
-				<form action="#" method="post">
+				<form class ="" action="" method="post">
+
+               <input type="hidden" name="csrfmiddlewaretoken" value="zVYZXXHC6iTRoZmO2iCQdLosGjcLgdUDXZtVeMCPVG2gMtCLcK0eH3ZIxEBhNtBE">
 					<div class="field-group">
 						<span class="fa fa-user" aria-hidden="true"></span>
 						<div class="wthree-field">
-							<input name="text1" id="text1" type="text" value="" placeholder="Username" required>
+							<input name="username" id="id_username" type="text" value="" placeholder="Username" required>
 						</div>
 					</div>
 					<div class="field-group">
+
 						<span class="fa fa-lock" aria-hidden="true"></span>
 						<div class="wthree-field">
-							<input name="password" id="myInput" type="Password" placeholder="Password">
+							<input name="password" id="id_password" type="Password" placeholder="Password">
 						</div>
 					</div>
 					<div class="wthree-field">
+
+                  {% csrf_token %}
 						<button type="submit" class="btn">Get Started</button>
 					</div>
 					<br>
@@ -50,7 +45,7 @@
 			</div>
 		</div>
 
-</section> -->
+</section>
 
 
 {% endblock %}

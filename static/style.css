@@ -1,25 +1,28 @@
 
-
+html{
+   height:100%;
+}
 
 body {
 
 
-  background-image: url('/static/background.jpg');
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+  background: url('/static/login.jpg');
+
+
 
   /* Full height */
   height: 100%;
 
   /* Center and scale the image nicely */
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
-
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;2
+  font-size: 100%;
   font: inherit;
   vertical-align: baseline;
 
@@ -40,9 +43,10 @@ img {
 h1 {
   font-weight: 500;
   line-height: 1.2;
-  text-align: center;
-  margin-bottom: 5%;
-  margin-top: 2%;
+
+  text-align:center;
+
+
 }
 
 
@@ -122,19 +126,7 @@ background-color: #444;
 .sidebar a {font-size: 18px;}
 }
 
-#main {
-transition: margin-left .5s; /* If you want a transition effect */
-padding: 20px;
-}
 
-/* Style page content */
-.main {
-  margin-left: 160px;
-  /* Same as the width of the sidebar */
-  padding: 0px 10px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
@@ -229,17 +221,27 @@ right: 0;
 
 /* button css ends */
 
+/*scrallbar css*/
 
-
-.MyDiv {
+ .MyDiv {
   text-align: center;
 }
 
-.bg-dark {
-  background-image: linear-gradient(180deg, hotpink, grey);
+::-webkit-scrollbar {
+  width: 12px;
 }
 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 10px rgba(0,128,128);
+  border-radius: 10px;
+}
 
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 20px rgba(0,139,1139);
+}
+
+/*scrollbar css ends*/
 
 
 /* new addition for login page*/
@@ -249,26 +251,21 @@ body {
 	font-family: 'Mukta', sans-serif;
 }
 .main {
-    background: url("C:\\Users\\Utkarsh\\Documents\\GitHub\\ProjectY\\static\\login.jpg") no-repeat center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
+
 	position: relative;
+   margin-top:-8%;
     min-height: 100vh;
+    margin-left:35%;
 }
 .layer {
-    padding: 2em 0;
+    padding: 1em 0;
 }
 .text-center {
     text-align: center;
 }
 
-/*/////////////// FONT STYLES ////////////////////*/
-
 .content-w3ls {
-    max-width: 500px;
+    max-width: 600px;
     margin: 6em auto;
 }
 ul.links-unordered-list li.active a {
@@ -309,21 +306,15 @@ li.switch-agileits {
     font-size: 15px;
 }
 
-/**/
-/*/////////////// FORM STYLES ////////////////////*/
 
 form .field-group {
     background: rgba(255, 255, 255, 0.15);
     display: flex;
     display: flex;
     display: -webkit-box;
-    /* OLD - iOS 6-, Safari 3.1-6 */
     display: -moz-box;
-    /* OLD - Firefox 19- (buggy but mostly works) */
     display: -ms-flexbox;
-    /* TWEENER - IE 10 */
     display: -webkit-flex;
-    /* NEW - Chrome */
     margin-bottom: 20px;
     padding: 2px 10px 2px 0;
 	border-radius: 35px;
@@ -335,11 +326,11 @@ form .field-group {
 
 form .field-group span {
     flex: 1;
-    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
-    -moz-box-flex: 1;         /* OLD - Firefox 19- */
-    width: 20%;               /* For old syntax, otherwise collapses. */
-    -webkit-flex: 1;          /* Chrome */
-    -ms-flex: 1;              /* IE 10 */
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    width: 20%;
+    -webkit-flex: 1;
+    -ms-flex: 1;
     color: #fff;
     background: transparent;
     line-height: 49px;
@@ -353,10 +344,10 @@ ul.list-login {
 
 form .field-group .wthree-field {
     flex: 4 50%;
-    -webkit-box-flex:4 50%;     /* OLD - iOS 6-, Safari 3.1-6 */
-    -moz-box-flex: 4 50%;        /* OLD - Firefox 19- */
-    -webkit-flex: 4 50%;          /* Chrome */
-    -ms-flex: 4 50%;             /* IE 10 */
+    -webkit-box-flex:4 50%;
+    -moz-box-flex: 4 50%;
+    -webkit-flex: 4 50%;
+    -ms-flex: 4 50%;
 }
 
 .wthree-field button.btn {
@@ -417,21 +408,18 @@ ul.links-unordered-list li a {
     width: 100%;
     outline: none;
 }
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+::-webkit-input-placeholder {
   color: #ccc;
 }
-::-moz-placeholder { /* Firefox 19+ */
+::-moz-placeholder {
   color: #ccc;
 }
-::-ms-input-placeholder { /* IE 10+ */
+::-ms-input-placeholder {
   color: #ccc;
 }
-::-moz-placeholder { /* Firefox 18- */
+::-moz-placeholder {
   color: #ccc;
 }
-/* switch */
-
-/**/
 
 ul.list-login-bottom li:nth-child(1) a,ul.list-login-bottom li:nth-child(2) a {
     font-size: 15px;
