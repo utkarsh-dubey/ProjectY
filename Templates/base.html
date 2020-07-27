@@ -44,8 +44,7 @@
     {% if user.is_authenticated %}
     <p class="top-menu">
       Hello, {{ user.username }}<a href="{% url 'logout' %}" class="top-menu"><small>(Log out)</small></a></p>
-    <h1><a href="{% url 'get_user_profile' user.username %}"><button type="button" class="btn btn">Profile</button></a></h1>
-
+    
     {% endif %}
     <h1><a href="/" title="Home Page">Sports</a><i class="fas fa-blog"></i></h1>
 
