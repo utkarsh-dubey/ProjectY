@@ -8,7 +8,8 @@ from app1.forms import SignUpForm
 from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
 from .filters import PostFilter
-
+from django.contrib import messages
+from .forms import ContactForm
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
@@ -300,10 +301,6 @@ def login_view(request):
 
     return render(request,'registration/login.html',{'form':form})
 
-@login_required(login_url='/accounts/login/')
-def index2(request):
-
-    return render(request,'index2.html')
 
 @login_required
 def get_user_profile(request, username):
@@ -342,3 +339,8 @@ def home_view(request):
               }
 
     return render(request, 'posts2.html', context)
+
+def contact(request):
+    form = ContactForm()
+
+    return(request, 'accounts/profile.html', {'form': form})

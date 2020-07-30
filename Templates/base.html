@@ -14,7 +14,6 @@
 
 <body>
 
-
   {% if user.is_authenticated %}
   <div id="mySidebar" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -39,7 +38,7 @@
     {% if user.is_authenticated %}
     <p class="top-menu">
       Hello, {{ user.username }}<a href="{% url 'logout' %}" class="top-menu"><small>(Log out)</small></a></p>
-    
+
 
     {% endif %}
     <h1><a href="/" title="Home Page">Sports</a><i class="fas fa-blog"></i></h1>

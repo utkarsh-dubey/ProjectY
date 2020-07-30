@@ -1,8 +1,6 @@
 from django import forms
-from .models import Post,Comment,Going
+from .models import Post,Comment,Going,Profile
 from django.core.files.images import get_image_dimensions
-from django import forms
-from app1.models import Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -71,3 +69,9 @@ class Goingform(forms.ModelForm):
         widgets = {
             'going': forms.Select(choices=TRUE_FALSE_CHOICES)
         }
+
+class ContactForm(forms.Form):
+    name = forms.CharField()
+    email = forms.EmailField(label='E-Mail')
+    subject = forms.CharField(required=False)
+    body = forms.CharField(widget=forms.Textarea)
