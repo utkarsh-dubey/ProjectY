@@ -268,7 +268,7 @@ def posts_detail_view(request, url=None):
 def index(request):
     form = InterestForm(request.POST or None)
     interests = Interest.objects.all()
-    print(interests)
+    print(Interest.objects.values())
 
     if form.is_valid():
         form.save()
