@@ -62,10 +62,10 @@
       <input type="submit" value="Save">
   </form>
   <form method="post">
-      {% csrf_token %}
-      {{ form }}
-      <button type="button" name="button">what the fcuk is this</button>
-  </form>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
 
 
 {% endblock content %}

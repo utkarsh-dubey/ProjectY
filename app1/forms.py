@@ -70,8 +70,12 @@ class Goingform(forms.ModelForm):
             'going': forms.Select(choices=TRUE_FALSE_CHOICES)
         }
 
-class ContactForm(forms.Form):
+class ContactForm(forms.ModelForm):
     name = forms.CharField()
     email = forms.EmailField(label='E-Mail')
     subject = forms.CharField(required=False)
     body = forms.CharField(widget=forms.Textarea)
+
+
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Your name', max_length=100)

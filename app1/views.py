@@ -9,7 +9,7 @@ from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateFo
 from django.http import HttpResponseRedirect
 from .filters import PostFilter
 from django.contrib import messages
-from .forms import ContactForm
+from .forms import ContactForm, NameForm
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
@@ -306,6 +306,7 @@ def login_view(request):
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
     if request.method == 'POST':
+        form = NameForm(request.POST)
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
 
@@ -316,10 +317,12 @@ def get_user_profile(request, username):
     else:
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, instance = request.user.profile)
+        form = NameForm(request.POST)
 
     context= { 'u_form':u_form,
                 'p_form':p_form,
-                'user':user
+                'user':user,
+                'form':form
             }
     return render(request, 'accounts/profile.html', context)
 
@@ -339,8 +342,3 @@ def home_view(request):
               }
 
     return render(request, 'posts2.html', context)
-
-def contact(request):
-    form = ContactForm()
-
-    return(request, 'accounts/profile.html', {'form': form})
