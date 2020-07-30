@@ -3,13 +3,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Post
+from .models import Post,Interest
 from app1.forms import SignUpForm
 from .forms import PostForm,CommentForm,Goingform,UserUpdateForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
 from .filters import PostFilter
 from django.contrib import messages
-from .forms import ContactForm, NameForm
+from .forms import InterestForm
 #create view
 @login_required(login_url='/accounts/login/')
 def posts_create_view(request):
@@ -55,7 +55,12 @@ def posts_list_view(request):
 
 def basketball_view(request):
 
+    display = []
     allposts= Post.objects.all()
+
+    for post in allposts:
+        if post.category=="basketball":
+            display.append(post)
 
     context= {'allposts': allposts,
               }
@@ -66,6 +71,7 @@ def pubg_view(request):
 
     display = []
     allposts= Post.objects.all()
+
     for post in allposts:
         if post.category=="pubg":
             display.append(post)
@@ -260,7 +266,17 @@ def posts_detail_view(request, url=None):
     return render(request, 'posts-detail-view.html', {'post': post,'comments': comments,'new_comment': new_comment,'comment_form': comment_form,'goings':goings,'new_goings':new_goings,'going_form':going_form})
 
 def index(request):
-    return render(request,'index.html')
+    form = InterestForm(request.POST or None)
+    interests = Interest.objects.all()
+    print(interests)
+
+    if form.is_valid():
+        form.save()
+        print(form.save())
+
+    context = { 'form' : form,}
+
+    return render(request,'index.html', context)
 
 def sign_up(request):
     if request.method == 'POST':
@@ -305,8 +321,8 @@ def login_view(request):
 @login_required
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
+
     if request.method == 'POST':
-        form = NameForm(request.POST)
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
 
@@ -317,12 +333,12 @@ def get_user_profile(request, username):
     else:
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, instance = request.user.profile)
-        form = NameForm(request.POST)
+
 
     context= { 'u_form':u_form,
                 'p_form':p_form,
                 'user':user,
-                'form':form
+
             }
     return render(request, 'accounts/profile.html', context)
 

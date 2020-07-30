@@ -28,7 +28,12 @@
 
     {% endif %}
 
-  
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Submit">
+    </form>
+    <h2>{{ text }}</h2>
 
   </body>
 </html>

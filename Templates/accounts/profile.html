@@ -48,24 +48,5 @@
       </form>
     </div>
 
-  <form method="POST">
-      {% csrf_token %}
-      <input type="checkbox" id="category1" name="category1" value="Pubg">
-      <label for="category1"> Pubg</label><br>
-
-      <input type="checkbox" id="category2" name="category2" value="Basketball">
-      <label for="category2"> Basktet ball</label><br>
-
-      <input type="checkbox" id="category3" name="category3" value="Football">
-      <label for="category3"> Foot ball </label><br><br>
-
-      <input type="submit" value="Save">
-  </form>
-  <form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
-
 
 {% endblock content %}

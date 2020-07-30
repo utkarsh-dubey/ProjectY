@@ -7,6 +7,7 @@ from PIL import Image
 import random
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 
@@ -79,3 +80,9 @@ class Going(models.Model):
 
     def __str__(self):
         return ''.format(self.name)
+
+class Interest(models.Model):
+
+    category = ('pubg', 'Pubg'),('basketball', 'Basketball'),('football', 'Football'),('cricket', 'Cricket')
+
+    interests = MultiSelectField(choices=category)

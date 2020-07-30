@@ -1,8 +1,9 @@
 from django import forms
-from .models import Post,Comment,Going,Profile
+from .models import Post,Comment,Going,Profile, Interest
 from django.core.files.images import get_image_dimensions
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from multiselectfield import MultiSelectField
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -70,12 +71,13 @@ class Goingform(forms.ModelForm):
             'going': forms.Select(choices=TRUE_FALSE_CHOICES)
         }
 
-class ContactForm(forms.ModelForm):
-    name = forms.CharField()
-    email = forms.EmailField(label='E-Mail')
-    subject = forms.CharField(required=False)
-    body = forms.CharField(widget=forms.Textarea)
+class InterestForm(forms.ModelForm):
 
+    category = ('pubg', 'Pubg'),('basketball', 'Basketball'),('football', 'Football'),('cricket', 'Cricket')
 
-class NameForm(forms.Form):
-    your_name = forms.CharField(label='Your name', max_length=100)
+    interests = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                                  choices=category)
+
+    class Meta:
+        model = Interest
+        fields = ('interests',  )
