@@ -342,3 +342,14 @@ def home_view(request):
               }
 
     return render(request, 'posts2.html', context)
+
+
+
+def chat(request):
+    return render(request, 'chat/chat.html')
+
+
+def room(request, room_name):
+    return render(request, 'chat/room.html', {
+        'room_name': room_name
+    })

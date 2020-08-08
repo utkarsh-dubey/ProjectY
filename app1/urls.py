@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -30,6 +30,8 @@ urlpatterns = [
     path('nba', views.nba_view, name='nba'),
     path('skribbl', views.skribbl_view, name='skribbl'),
     path('uno', views.uno_view, name='uno'),
-    path('others', views.others_view, name='others')
+    path('others', views.others_view, name='others'),
+    path('chat', views.chat, name='chat'),
+    path('chat/<str:room_name>/', views.room, name='room')
 
 ]

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'app1',
     'crispy_forms',
     'django_filters',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ProjectY.wsgi.application'
-
+ASGI_APPLICATION = 'ProjectY.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
