@@ -36,16 +36,21 @@ LOGOUT_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'app1',
     'crispy_forms',
-    'django_filters',
+
+
     'channels',
+    'django_filters',
+
 ]
 
 MIDDLEWARE = [
