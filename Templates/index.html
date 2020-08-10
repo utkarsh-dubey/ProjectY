@@ -1,13 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'partial.html' %}
 
 {% block content%}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
     {% if user.is_authenticated %}
     <h1 style="color: white;"> Welcome {{user}} </h1>
     <a href="/create"><button class="btn-2" style="background-color: #ffffff; color: teal;margin-left: 15%;">Create</button></a>
@@ -35,6 +28,4 @@
     </form>
     <h2>{{ text }}</h2>
 
-  </body>
-</html>
 {%endblock%}
