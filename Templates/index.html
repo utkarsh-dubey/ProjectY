@@ -1,5 +1,7 @@
 {% extends 'partial.html' %}
-
+{% block title %}
+  ProjectY Home
+{% endblock %}
 {% block content%}
     {% if user.is_authenticated %}
     <h1 style="color: white;"> Welcome {{user}} </h1>
