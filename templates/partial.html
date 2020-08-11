@@ -48,15 +48,20 @@
 
 	<!-- Sidebar -->
 	<div class="sidenav">
-		{% for sport in list(['PUBG', 'BasketBall', 'CallOfDuty']) %} <!-- Provide allsports to use here -->
+		{% with 'PUBG BasketBall CallOfDuty' as list %} <!-- Provide allsports to use here -->
+		{% for sport in list.split %}
   			<a href="/{{ sport }}">{{ sport }}</a>
   		{% endfor %}
+  		{% endwith %}
 	</div>
 	<!-- Sidebar -->
+
+	<!-- Main -->
 	<div class="main">
 		{% block content %}
 		{% endblock %}
 	</div>
+	<!-- Main -->
 
 	<!-- Footer -->
 	<footer class="page-footer font-small blue">
