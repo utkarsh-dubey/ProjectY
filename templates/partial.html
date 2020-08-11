@@ -10,6 +10,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="{% static '/js/bootstrap.min.js' %}"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static '/css/partial.css' %}">
 </head>
 <body>
 	<!-- Header -->
@@ -27,14 +28,17 @@
 	    	<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 		    	{% if user.is_authenticated %}
 		    	<li class="nav-item active">
-	        		<a class="nav-link" href="">Welcome {{user}}</a>
+	        		<a class="nav-link" href="">Hello, {{ user.username }}</a>  <!-- Add Link to profile here -->
+	      		</li>
+	      		<li class="nav-item active">
+	        		<a class="nav-link" href="{% url 'logout' %}">Logout</a>
 	      		</li>
 	      		{% else %}
 	      		<li class="nav-item active">
-	        		<a class="nav-link" href="./login">Login</a>
+	        		<a class="nav-link" href="./accounts/login/">Login</a>
 	      		</li>
 	      		<li class="nav-item active">
-	        		<a class="nav-link" href="./signup">Sign up</a>
+	        		<a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
 	      		</li>
 	      		{% endif %}
 	    	</ul>
@@ -42,17 +46,27 @@
 	</nav>
 	<!-- Header -->
 
-	{% block content %}
-    {% endblock %}
+	<!-- Sidebar -->
+	<div class="sidenav">
+		{% for sport in list(['PUBG', 'BasketBall', 'CallOfDuty']) %} <!-- Provide allsports to use here -->
+  			<a href="/{{ sport }}">{{ sport }}</a>
+  		{% endfor %}
+	</div>
+	<!-- Sidebar -->
+	<div class="main">
+		{% block content %}
+		{% endblock %}
+	</div>
 
 	<!-- Footer -->
 	<footer class="page-footer font-small blue">
 	  <!-- Copyright -->
 	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-	    <a href=""> ProjectY</a>
+	    <a href="">ProjectY</a>
 	  </div>
 	  <!-- Copyright -->
 	</footer>
 	<!-- Footer -->
+
 </body>
 </html>
