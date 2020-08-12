@@ -308,13 +308,10 @@ def login_view(request):
             user=form.get_user()
             login(request,user)
             return render(request,'index.html')
-
         else:
             form=AuthenticationForm()
     else:
         form=AuthenticationForm()
-
-
     return render(request,'registration/login.html',{'form':form})
 
 

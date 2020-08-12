@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="{% static '/css/partial.css' %}">
 </head>
 <body>
+
 	<!-- Header -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +36,7 @@
 	      		</li>
 	      		{% else %}
 	      		<li class="nav-item active">
-	        		<a class="nav-link" href="./accounts/login/">Login</a>
+	        		<a class="nav-link" data-toggle="modal" href="#myModal">Login</a>
 	      		</li>
 	      		<li class="nav-item active">
 	        		<a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
@@ -48,7 +49,7 @@
 
 	<!-- Sidebar -->
 	<div class="sidenav">
-		{% with 'PUBG BasketBall CallOfDuty' as list %} <!-- Provide allsports to use here -->
+		{% with 'PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG BasketBall CallOfDuty PUBG' as list %} <!-- Provide allsports to use here -->
 		{% for sport in list.split %}
   			<a href="/{{ sport }}">{{ sport }}</a>
   		{% endfor %}
@@ -56,8 +57,92 @@
 	</div>
 	<!-- Sidebar -->
 
+	<!-- Login Modal HTML -->
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog modal-login">
+			<div class="modal-content">
+				<form action="" method="post">
+					<div class="modal-header">				
+						<h4 class="modal-title">Login</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">				
+						<div class="form-group">
+							<label>Username</label>
+							<input type="text" class="form-control" required="required">
+						</div>
+						<div class="form-group">
+							<div class="clearfix">
+								<label>Password</label>
+								<a href="#" class="float-right text-muted"><small>Forgot?</small></a>
+							</div>
+							
+							<input type="password" class="form-control" required="required">
+						</div>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<label class="form-check-label"><a class="nav-link" href="./user/signup?next=index.html">Sign up</a></label>
+						<input type="submit" class="btn btn-primary" value="Login">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div> 
+	<!-- Login Modal HTML -->
+
 	<!-- Main -->
 	<div class="main">
+		<li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
+	    <li class="nav-item active">
+	        <a class="nav-link" href="./user/signup?next=index.html">Sign up</a>
+	    </li>
 		{% block content %}
 		{% endblock %}
 	</div>
