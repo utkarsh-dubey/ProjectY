@@ -302,9 +302,12 @@ def sign_up(request):
 
 def login_view(request):
 
+    print("acha")
     if(request.method=='POST'):
+        print("hua bhi")
         form=AuthenticationForm(data=request.POST)
         if(form.is_valid()):
+            print("arre ho rha")
             user=form.get_user()
             login(request,user)
             return render(request,'index.html')
@@ -312,7 +315,7 @@ def login_view(request):
             form=AuthenticationForm()
     else:
         form=AuthenticationForm()
-    return render(request,'registration/login.html',{'form':form})
+    return render(request,'partial.html',{'form':form})
 
 
 @login_required
