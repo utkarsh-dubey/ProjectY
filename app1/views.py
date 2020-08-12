@@ -301,7 +301,6 @@ def sign_up(request):
 
 
 def login_view(request):
-
     if(request.method=='POST'):
         form=AuthenticationForm(data=request.POST)
         if(form.is_valid()):
@@ -312,7 +311,7 @@ def login_view(request):
             form=AuthenticationForm()
     else:
         form=AuthenticationForm()
-    return render(request,'registration/login.html',{'form':form})
+    return render(request,'partial.html',{'form':form})
 
 
 @login_required
