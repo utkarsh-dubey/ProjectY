@@ -82,7 +82,7 @@
 						</div>
 					</div>
 					<div class="modal-footer justify-content-between">
-						<label class="form-check-label"><a class="nav-link" href="./user/signup?next=index.html">Sign Up</a></label>
+						<label class="form-check-label"><a class="nav-link" href="{% url 'sign_up' %}">Sign Up</a></label>
 						{% csrf_token %}
 						<input type="submit" class="btn btn-primary" value="Login">
 					</div>
