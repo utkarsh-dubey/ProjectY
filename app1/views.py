@@ -301,6 +301,7 @@ def sign_up(request):
 
 
 def login_view(request):
+    print("acha")
     if(request.method=='POST'):
         form=AuthenticationForm(data=request.POST)
         if(form.is_valid()):
