@@ -65,7 +65,7 @@ def basketball_view(request):
     context= {'allposts': allposts,
               }
 
-    return render(request, 'basketball.html', context)
+    return render(request, 'sports/basketball.html', context)
 
 def pubg_view(request):
 
@@ -79,7 +79,7 @@ def pubg_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'pubg.html', context)
+    return render(request, 'sports/pubg.html', context)
 
 def cod_view(request):
 
@@ -92,7 +92,7 @@ def cod_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'callofduty.html', context)
+    return render(request, 'sports/callofduty.html', context)
 
 def cricket_view(request):
 
@@ -105,7 +105,7 @@ def cricket_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'cricket.html', context)
+    return render(request, 'sports/cricket.html', context)
 
 def football_view(request):
 
@@ -118,7 +118,7 @@ def football_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'football.html', context)
+    return render(request, 'sports/football.html', context)
 
 def fifa_view(request):
 
@@ -131,7 +131,7 @@ def fifa_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'fifa.html', context)
+    return render(request, 'sports/fifa.html', context)
 
 def nba_view(request):
 
@@ -144,7 +144,7 @@ def nba_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'nba.html', context)
+    return render(request, 'sports/nba.html', context)
 
 def skribbl_view(request):
 
@@ -157,7 +157,7 @@ def skribbl_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'skribbl.html', context)
+    return render(request, 'sports/skribbl.html', context)
 
 def ludo_view(request):
 
@@ -170,7 +170,7 @@ def ludo_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'ludo.html', context)
+    return render(request, 'sports/ludo.html', context)
 
 def fortnite_view(request):
 
@@ -183,7 +183,7 @@ def fortnite_view(request):
     context= {"fortnite": display,
               }
 
-    return render(request, 'fortnite.html', context)
+    return render(request, 'sports/fortnite.html', context)
 
 def uno_view(request):
 
@@ -196,7 +196,7 @@ def uno_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'uno.html', context)
+    return render(request, 'sports/uno.html', context)
 
 def others_view(request):
 
@@ -209,7 +209,7 @@ def others_view(request):
     context= {"allposts": display,
               }
 
-    return render(request, 'others.html', context)
+    return render(request, 'sports/others.html', context)
 #detail view
 def posts_detail_view(request, url=None):
 
