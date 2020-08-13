@@ -10,11 +10,11 @@ from .views import( posts_detail_view,
 
 
 urlpatterns = [
-    # path('',views.index,name="home"),
+    path('',views.index,name="home"),
 
     path('signup',views.sign_up, name="sign_up"),
     path('posts2', views.home_view, name='posts'),
-	url('',views.login_view,name="login"),
+	url(r'^login/$',views.login_view,name="login"),
 	url(r'^posts/$', posts_list_view, name='posts_list_view'),
     url(r'^posts/(?P<url>\S+)/$', posts_detail_view, name='posts_detail_view'),
     url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='get_user_profile'),
