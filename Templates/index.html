@@ -13,6 +13,7 @@
     <a href="/create"><button class="btn-2" style="background-color: #ffffff; color: teal;margin-left: 15%;">Create</button></a>
     <a href="/posts2"><button class="btn-2" style="background-color: yellow; color: black;">View</button></a>
     <a href="{% url 'get_user_profile' user.username %}"><button type="button" class="btn-2" style="background-color: red;">Profile</button></a>
+    <a href="/chat"><button class="btn-2" style="background-color: yellow; color: black;">Global chat</button></a>
     <h1>Events you may be interested in</h1>
     {% for post in allposts %}
     <a href='/posts/{{ post.url }}/'>{{ post.title }} </a>
@@ -28,12 +29,16 @@
 
     {% endif %}
 
+
     <form method="post">
       {% csrf_token %}
       {{ form }}
       <input type="submit" value="Submit">
     </form>
     <h2>{{ text }}</h2>
+
+
+
 
   </body>
 </html>
