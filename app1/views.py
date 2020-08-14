@@ -301,21 +301,18 @@ def sign_up(request):
 
 
 def login_view(request):
-
+    
     if(request.method=='POST'):
         form=AuthenticationForm(data=request.POST)
         if(form.is_valid()):
             user=form.get_user()
             login(request,user)
             return render(request,'index.html')
-
         else:
             form=AuthenticationForm()
     else:
         form=AuthenticationForm()
-
-
-    return render(request,'registration/login.html',{'form':form})
+    return render(request,'partial.html',{'form':form})
 
 
 @login_required

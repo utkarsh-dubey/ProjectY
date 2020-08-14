@@ -33,5 +33,4 @@ urlpatterns = [
     path('others', views.others_view, name='others'),
     path('chat', views.chat, name='chat'),
     path('chat/<str:room_name>/', views.room, name='room')
-
 ]
