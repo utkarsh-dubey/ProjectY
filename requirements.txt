@@ -91,7 +91,7 @@ Twisted==20.3.0
 txaio==20.4.1
 tzlocal==1.5.1
 update==0.0.1
-urllib3==1.25.7
+urllib3==1.26.5
 websocket-client==0.57.0
 xlrd==1.2.0
 XlsxWriter==1.2.8
