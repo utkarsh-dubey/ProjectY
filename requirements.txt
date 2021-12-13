@@ -40,7 +40,7 @@ incremental==17.5.0
 introcs==1.2.1
 jwcrypto==0.6.0
 kiwisolver==1.2.0
-lxml==4.5.0
+lxml==4.6.5
 matplotlib==3.2.1
 misaka==2.1.1
 mock==3.0.5
