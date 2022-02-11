@@ -87,7 +87,7 @@ sqlparse==0.3.0
 sseclient==0.0.24
 style==1.1.0
 textract==1.6.3
-Twisted==20.3.0
+Twisted==22.1.0
 txaio==20.4.1
 tzlocal==1.5.1
 update==0.0.1
