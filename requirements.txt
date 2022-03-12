@@ -54,7 +54,7 @@ olefile==0.46
 pandas==1.0.3
 pdfminer==20191125
 pdfminer.six==20181108
-Pillow==8.2.0
+Pillow==9.0.1
 protobuf==3.11.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.7
