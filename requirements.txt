@@ -38,7 +38,7 @@ idna==2.8
 IMAPClient==2.1.0
 incremental==17.5.0
 introcs==1.2.1
-jwcrypto==0.6.0
+jwcrypto==1.4
 kiwisolver==1.2.0
 lxml==4.5.0
 matplotlib==3.2.1
